@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==============================
+   Theme Variables
+   ============================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Theme */
+  --bg-color: linear-gradient(-45deg, #F0F9FF, #fdf0ea, #e8feee, #fffdea);
+  --heading-color: #1A1A1A;
+  --subheading-color: #4B5563;
+  --text-color: #374151;
+  --accent-color: #2563EB;
+  --highlight-color: #EAB308; /* gold/yellow highlight */
+  --card-bg-color: #ffffff;
+  --card-border-color: #E5E7EB; /* soft gray border */
+  --input-bg: #F9FAFB;              /* Subtle gray input background */
+  --input-text: #111827;            /* Dark text inside input */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* Dark Theme */
+  --bg-color: linear-gradient(
+    -30deg,
+    #1f0e01 30%,
+    #02232B 65%,
+    #020617 0%,
+    #0D2900 100%
+  );
+  --heading-color: #F1F5F9;
+  --subheading-color: #CBD5E1;
+  --text-color: #94A3B8;
+  --accent-color: #38BDF8;
+  --highlight-color: #FACC15; /* bright yellow highlight */
+  --card-bg-color: #1E293B; /* slightly lighter than body */
+  --card-border-color: rgba(255, 255, 255, 0.15); /* subtle visible outline */
+  --input-bg: #0F172A;              /* Deep navy input bg */
+  --input-text: #F1F5F9;            /* Light text in inputs */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+/* ==============================
+   Base Styles
+   ============================== */
+body {
+  background: var(--bg-color);
+  background-size: 300% 300%;
+  animation: aurora 15s ease-in-out infinite; /* slower, smoother movement */
+  color: var(--text-color);
+  transition: color 0.5s ease, background 0.5s ease;
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==============================
+   Reusable Typography System
+   ============================== */
+@layer components {
+  .heading {
+    @apply text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4;
+    color: var(--heading-color);
+  }
+
+  .subheading {
+    @apply text-xl sm:text-2xl md:text-3xl font-semibold mb-3;
+    color: var(--subheading-color);
+  }
+
+  .body-text {
+    @apply text-base sm:text-lg md:text-xl leading-relaxed;
+    color: var(--text-color);
+  }
+
+  .caption {
+    @apply text-sm sm:text-base text-center;
+    color: var(--subheading-color);
+  }
+
+  .link {
+    @apply underline font-medium transition-colors;
+    color: var(--accent-color);
+  }
+  .link:hover {
+    opacity: 0.8;
+  }
+
+  .button {
+    @apply px-4 py-2 rounded-lg font-semibold transition-transform duration-200;
+    background-color: var(--accent-color);
+    color: var(--button-text);
+  }
+  .button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  .card {
+    @apply rounded-2xl shadow-lg p-6 transition-colors duration-300;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+  }
+
+  .input {
+    @apply w-full rounded-lg p-3 outline-none border transition-all duration-200;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--border-color);
+  }
+  .input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px var(--accent-color);
+  }
 }
