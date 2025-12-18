@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 
 export default function CareersPage() {
   return (
-    <section
-      className="py-20 transition-colors duration-500 text-[var(--text-color)]">
+    <section className="py-20 transition-colors duration-500 text-[var(--text-color)]">
       <PageHeader
         title="Careers at BFS"
         subtitle="Join our professional manpower team for security and facility services"

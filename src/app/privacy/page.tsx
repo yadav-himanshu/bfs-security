@@ -40,17 +40,11 @@ export default function PrivacyPage() {
         <h3 className="subheading mt-8">Contact Us</h3>
         <p>
           For any questions about this Privacy Policy, please contact us at{" "}
-          <a
-            href="mailto:himanshuyadav7852@gmail.com"
-            className="link"
-          >
+          <a href="mailto:himanshuyadav7852@gmail.com" className="link">
             himanshuyadav7852@gmail.com
           </a>{" "}
           or call{" "}
-          <a
-            href="tel:+917499506824"
-            className="link"
-          >
+          <a href="tel:+917499506824" className="link">
             +91 7499506824
           </a>
           .

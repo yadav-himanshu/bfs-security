@@ -1,6 +1,6 @@
 "use client";
 import { FaWhatsapp } from "react-icons/fa";
-import DraggableFloating, {commonButtonStyle} from "./DraggableFloating";
+import DraggableFloating, { commonButtonStyle } from "./DraggableFloating";
 
 export default function WhatsAppButton() {
   const bfsNumber = "919999999999";
@@ -26,8 +26,7 @@ export default function WhatsAppButton() {
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow =
-            "0 4px 15px rgba(37,211,102,0.4)";
+          e.currentTarget.style.boxShadow = "0 4px 15px rgba(37,211,102,0.4)";
         }}
       >
         <FaWhatsapp size={24} color="white" />

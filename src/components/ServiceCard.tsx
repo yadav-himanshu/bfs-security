@@ -11,13 +11,12 @@ interface Props {
 export default function ServiceCard({ service }: Props) {
   return (
     <div
-  className="rounded-2xl shadow-md overflow-hidden hover:-translate-y-1 hover:shadow-[0_0_15px_var(--highlight-color)]/20 transition-all duration-300 group"
-  style={{
-    backgroundColor: "var(--card-bg-color)",
-    border: "1px solid var(--card-border-color)",
-  }}
->
-
+      className="rounded-2xl shadow-md overflow-hidden hover:-translate-y-1 hover:shadow-[0_0_15px_var(--highlight-color)]/20 transition-all duration-300 group"
+      style={{
+        backgroundColor: "var(--card-bg-color)",
+        border: "1px solid var(--card-border-color)",
+      }}
+    >
       {/* Image */}
       <div className="relative w-full h-56 overflow-hidden">
         <Image

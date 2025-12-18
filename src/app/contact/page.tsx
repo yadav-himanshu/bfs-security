@@ -3,8 +3,7 @@ import ContactForm from "@/components/ContactForm";
 
 export default function ContactPage() {
   return (
-    <section
-      className="py-20 overflow-hidden transition-colors duration-500 text-[var(--text-color)]">
+    <section className="py-20 overflow-hidden transition-colors duration-500 text-[var(--text-color)]">
       <PageHeader
         title="Contact Us"
         subtitle="Reach out to BFS for inquiries, quotes, or support"
@@ -12,9 +11,7 @@ export default function ContactPage() {
 
       <div className="max-w-7xl mx-auto px-6 mt-16 grid lg:grid-cols-2 gap-16">
         {/* Contact Info */}
-        <div
-          className=""
-        >
+        <div className="">
           <h2
             className="text-3xl font-semibold drop-shadow-[0_0_6px_var(--highlight-color)]"
             style={{ color: "var(--highlight-color)" }}
@@ -33,15 +30,21 @@ export default function ContactPage() {
 
           <div className="space-y-4">
             <p className="transition-colors duration-300 hover:opacity-90">
-              <strong style={{ color: "var(--highlight-color)" }}>Address:</strong>{" "}
+              <strong style={{ color: "var(--highlight-color)" }}>
+                Address:
+              </strong>{" "}
               Jai Ambe Soc. MG Cross Road No 3, Kandivali West, Mumbai
             </p>
             <p className="transition-colors duration-300 hover:opacity-90">
-              <strong style={{ color: "var(--highlight-color)" }}>Phone:</strong>{" "}
+              <strong style={{ color: "var(--highlight-color)" }}>
+                Phone:
+              </strong>{" "}
               +91 7499506824
             </p>
             <p className="transition-colors duration-300 hover:opacity-90">
-              <strong style={{ color: "var(--highlight-color)" }}>Email:</strong>{" "}
+              <strong style={{ color: "var(--highlight-color)" }}>
+                Email:
+              </strong>{" "}
               himanshuyadav7852@gmail.com
             </p>
           </div>

@@ -9,16 +9,16 @@ html {
    ============================== */
 :root {
   /* Light Theme */
-  --bg-color: linear-gradient(-45deg, #F0F9FF, #fdf0ea, #e8feee, #fffdea);
-  --heading-color: #1A1A1A;
-  --subheading-color: #4B5563;
+  --bg-color: linear-gradient(-45deg, #f0f9ff, #fdf0ea, #e8feee, #fffdea);
+  --heading-color: #1a1a1a;
+  --subheading-color: #4b5563;
   --text-color: #374151;
-  --accent-color: #2563EB;
-  --highlight-color: #EAB308; /* gold/yellow highlight */
+  --accent-color: #2563eb;
+  --highlight-color: #eab308; /* gold/yellow highlight */
   --card-bg-color: #ffffff;
-  --card-border-color: #E5E7EB; /* soft gray border */
-  --input-bg: #F9FAFB;              /* Subtle gray input background */
-  --input-text: #111827;            /* Dark text inside input */
+  --card-border-color: #e5e7eb; /* soft gray border */
+  --input-bg: #f9fafb; /* Subtle gray input background */
+  --input-text: #111827; /* Dark text inside input */
 }
 
 .dark {
@@ -26,21 +26,20 @@ html {
   --bg-color: linear-gradient(
     -30deg,
     #1f0e01 30%,
-    #02232B 65%,
+    #02232b 65%,
     #020617 0%,
-    #0D2900 100%
+    #0d2900 100%
   );
-  --heading-color: #F1F5F9;
-  --subheading-color: #CBD5E1;
-  --text-color: #94A3B8;
-  --accent-color: #38BDF8;
-  --highlight-color: #FACC15; /* bright yellow highlight */
-  --card-bg-color: #1E293B; /* slightly lighter than body */
+  --heading-color: #f1f5f9;
+  --subheading-color: #cbd5e1;
+  --text-color: #94a3b8;
+  --accent-color: #38bdf8;
+  --highlight-color: #facc15; /* bright yellow highlight */
+  --card-bg-color: #1e293b; /* slightly lighter than body */
   --card-border-color: rgba(255, 255, 255, 0.15); /* subtle visible outline */
-  --input-bg: #0F172A;              /* Deep navy input bg */
-  --input-text: #F1F5F9;            /* Light text in inputs */
+  --input-bg: #0f172a; /* Deep navy input bg */
+  --input-text: #f1f5f9; /* Light text in inputs */
 }
-
 
 /* ==============================
    Base Styles
@@ -50,7 +49,9 @@ body {
   background-size: 300% 300%;
   animation: aurora 15s ease-in-out infinite; /* slower, smoother movement */
   color: var(--text-color);
-  transition: color 0.5s ease, background 0.5s ease;
+  transition:
+    color 0.5s ease,
+    background 0.5s ease;
 }
 
 @keyframes aurora {

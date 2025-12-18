@@ -2,8 +2,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
-import DraggableFloating, {commonButtonStyle} from "./DraggableFloating";
-
+import DraggableFloating, { commonButtonStyle } from "./DraggableFloating";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();

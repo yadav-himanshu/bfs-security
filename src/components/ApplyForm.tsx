@@ -6,7 +6,9 @@ interface ApplyFormProps {
   position?: string;
 }
 
-export default function ApplyForm({ position: initialPosition = "" }: ApplyFormProps) {
+export default function ApplyForm({
+  position: initialPosition = "",
+}: ApplyFormProps) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,7 +17,9 @@ export default function ApplyForm({ position: initialPosition = "" }: ApplyFormP
     message: "",
   });
   const [resume, setResume] = useState<File | null>(null);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
@@ -25,7 +29,9 @@ export default function ApplyForm({ position: initialPosition = "" }: ApplyFormP
   }, [initialPosition]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -167,7 +173,9 @@ export default function ApplyForm({ position: initialPosition = "" }: ApplyFormP
 
       <div className="max-w-3xl mx-auto mt-5 text-center text-sm">
         {status === "success" && (
-          <p className="text-green-400 animate-pulse">Application sent successfully!</p>
+          <p className="text-green-400 animate-pulse">
+            Application sent successfully!
+          </p>
         )}
         {status === "error" && <p className="text-red-400">{errorMsg}</p>}
       </div>

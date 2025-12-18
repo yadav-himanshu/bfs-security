@@ -25,8 +25,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg border-b border-[var(--card-border-color)] bg-[var(--bg-color)] transition-all duration-300 shadow-md">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg border-b border-[var(--card-border-color)] bg-[var(--bg-color)] transition-all duration-300 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
@@ -39,13 +38,8 @@ export default function Navbar() {
               priority
             />
           </div>
-          <span
-            className="text-xl font-bold transition-colors duration-300 text-[var(--highlight-color)]"
-          >
-            BFS{" "}
-            <span className="text-[var(--heading-color)]">
-              Security
-            </span>
+          <span className="text-xl font-bold transition-colors duration-300 text-[var(--highlight-color)]">
+            BFS <span className="text-[var(--heading-color)]">Security</span>
           </span>
         </Link>
 
@@ -73,8 +67,7 @@ export default function Navbar() {
 
       {/* Mobile / Dropdown Menu */}
       {menuOpen && (
-        <div
-          className="px-6 py-4 space-y-3 backdrop-blur-md border-t transition-all duration-300 bg-[var(--card-bg-color)] border-[var(--card-border-color)]">
+        <div className="px-6 py-4 space-y-3 backdrop-blur-md border-t transition-all duration-300 bg-[var(--card-bg-color)] border-[var(--card-border-color)]">
           {/* Desktop (Secondary Links) */}
           <div className="hidden md:block">
             {secondaryLinks.map((item) => (
@@ -82,7 +75,8 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]">
+                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+              >
                 {item.name}
               </Link>
             ))}
@@ -95,7 +89,8 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]">
+                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+              >
                 {item.name}
               </Link>
             ))}

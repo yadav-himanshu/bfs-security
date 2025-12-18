@@ -1,6 +1,6 @@
 // src/lib/servicesData.ts
 import { StaticImageData } from "next/image";
-import SG from "../../public/img/SG.png"
+import SG from "../../public/img/SG.png";
 export interface Service {
   id: number;
   title: string;

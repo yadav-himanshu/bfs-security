@@ -1,6 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import Image from "next/image";
-import SG from "../../../public/img/SG.png"
+import SG from "../../../public/img/SG.png";
 
 export default function AboutPage() {
   return (
@@ -39,7 +39,7 @@ export default function AboutPage() {
             src={SG}
             alt="BFS Security Team"
             width={600}
-          height={400}
+            height={400}
             className="rounded-2xl shadow-lg object-cover w-full h-[400px]"
           />
           <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
@@ -47,7 +47,10 @@ export default function AboutPage() {
       </section>
 
       {/* Mission and Vision */}
-      <section className="py-16" style={{ backgroundColor: "var(--card-bg-color)" }}>
+      <section
+        className="py-16"
+        style={{ backgroundColor: "var(--card-bg-color)" }}
+      >
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2
             className="heading mb-12"

@@ -41,12 +41,10 @@ export default function ScrollToTop() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow =
-                "0 0 20px rgba(255,215,0,0.5)";
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(255,215,0,0.5)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow =
-                "0 4px 15px rgba(0,0,0,0.15)";
+              e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.15)";
             }}
           >
             <FaArrowUp size={20} className="text-yellow-500" />

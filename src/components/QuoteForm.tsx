@@ -139,7 +139,10 @@ export default function QuoteForm() {
       {/* Status Message */}
       <div className="max-w-2xl mx-auto mt-5 text-center text-sm body-text">
         {status === "success" && (
-          <p style={{ color: "var(--highlight-color)" }} className="animate-pulse">
+          <p
+            style={{ color: "var(--highlight-color)" }}
+            className="animate-pulse"
+          >
             Quote request sent successfully!
           </p>
         )}

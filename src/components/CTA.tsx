@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CTA() {
   return (
-    <section
-      className="py-24 text-center text-[var(--text-color)] relative overflow-hidden"
-    >
+    <section className="py-24 text-center text-[var(--text-color)] relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2),transparent_70%)] opacity-30 animate-pulse pointer-events-none"></div>
 
@@ -32,7 +30,8 @@ export default function CTA() {
         className="max-w-2xl mx-auto mb-8 text-lg"
         style={{ color: "var(--subheading-color)" }}
       >
-        Hire trained professionals today and ensure complete peace of mind with BFS.
+        Hire trained professionals today and ensure complete peace of mind with
+        BFS.
       </motion.p>
 
       {/* Animated Button */}

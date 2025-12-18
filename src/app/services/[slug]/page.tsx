@@ -15,9 +15,9 @@ type ServicePageParams = { slug: string };
 type ServicePageProps = { params: Promise<ServicePageParams> };
 
 /* ✅ Metadata generator */
-export async function generateMetadata(
-  { params }: ServicePageProps
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ServicePageProps): Promise<Metadata> {
   const { slug } = await params; // `params` is treated as a Promise
   const service = servicesData.find((item) => item.slug === slug);
 

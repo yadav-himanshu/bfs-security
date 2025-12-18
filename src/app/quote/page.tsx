@@ -3,9 +3,7 @@ import QuoteForm from "@/components/QuoteForm";
 
 export default function QuotePage() {
   return (
-    <section
-      className="py-20 overflow-hidden text-[var(--text-color)] transition-colors duration-300"
-    >
+    <section className="py-20 overflow-hidden text-[var(--text-color)] transition-colors duration-300">
       <PageHeader
         title="Request a Quote"
         subtitle="Get a tailored manpower service quote from BFS — professional, reliable, and efficient."

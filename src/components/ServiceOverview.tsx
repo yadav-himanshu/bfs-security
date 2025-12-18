@@ -1,6 +1,13 @@
 "use client";
 import Link from "next/link";
-import { ShieldCheck, UserCheck, Car, Heart, Users, ArrowRight } from "lucide-react";
+import {
+  ShieldCheck,
+  UserCheck,
+  Car,
+  Heart,
+  Users,
+  ArrowRight,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const services = [
@@ -8,31 +15,53 @@ const services = [
     title: "Security Guards",
     desc: "Trained guards for commercial and residential security.",
     slug: "security-guards",
-    icon: <ShieldCheck className="w-10 h-10" style={{ color: "var(--highlight-color)" }} />,
+    icon: (
+      <ShieldCheck
+        className="w-10 h-10"
+        style={{ color: "var(--highlight-color)" }}
+      />
+    ),
   },
   {
     title: "Bouncers & Bodyguards",
     desc: "Reliable professionals for events and personal protection.",
     slug: "bouncers",
-    icon: <UserCheck className="w-10 h-10" style={{ color: "var(--highlight-color)" }} />,
+    icon: (
+      <UserCheck
+        className="w-10 h-10"
+        style={{ color: "var(--highlight-color)" }}
+      />
+    ),
   },
   {
     title: "Care Takers",
     desc: "Compassionate caretakers for home and facility needs.",
     slug: "care-takers",
-    icon: <Heart className="w-10 h-10" style={{ color: "var(--highlight-color)" }} />,
+    icon: (
+      <Heart
+        className="w-10 h-10"
+        style={{ color: "var(--highlight-color)" }}
+      />
+    ),
   },
   {
     title: "Liftman & Lady Guards",
     desc: "Disciplined and well-trained manpower for corporates.",
     slug: "lift-man",
-    icon: <Users className="w-10 h-10" style={{ color: "var(--highlight-color)" }} />,
+    icon: (
+      <Users
+        className="w-10 h-10"
+        style={{ color: "var(--highlight-color)" }}
+      />
+    ),
   },
   {
     title: "Drivers",
     desc: "Skilled and verified drivers for business or personal use.",
     slug: "drivers",
-    icon: <Car className="w-10 h-10" style={{ color: "var(--highlight-color)" }} />,
+    icon: (
+      <Car className="w-10 h-10" style={{ color: "var(--highlight-color)" }} />
+    ),
   },
 ];
 

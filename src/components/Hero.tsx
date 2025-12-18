@@ -36,9 +36,7 @@ export default function Hero() {
   };
 
   return (
-    <section
-      className="min-h-[90vh] flex flex-col justify-center text-[var(--text-color)] items-center text-center px-6 relative overflow-hidden"
-    >
+    <section className="min-h-[90vh] flex flex-col justify-center text-[var(--text-color)] items-center text-center px-6 relative overflow-hidden">
       {/* 🔹 Watermark / Shadow Logo */}
       <div
         className="

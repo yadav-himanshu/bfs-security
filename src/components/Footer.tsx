@@ -15,8 +15,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer
-      className="relative overflow-hidden pt-16 pb-8 text-[var(--text-color)] border-t border-[var(--text-color)]/20">
+    <footer className="relative overflow-hidden pt-16 pb-8 text-[var(--text-color)] border-t border-[var(--text-color)]/20">
       {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div> */}
 
       <div className="relative max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
@@ -125,12 +124,11 @@ export default function Footer() {
             {servicesData.map((service) => (
               <li key={service.id}>
                 <Link
-  href={`/services/${service.slug}`}
-  className="transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
->
-  {service.title}
-</Link>
-
+                  href={`/services/${service.slug}`}
+                  className="transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+                >
+                  {service.title}
+                </Link>
               </li>
             ))}
           </ul>

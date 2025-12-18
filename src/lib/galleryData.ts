@@ -1,5 +1,5 @@
 import { StaticImageData } from "next/image";
-import SG from "../../public/img/SG.png"
+import SG from "../../public/img/SG.png";
 export interface GalleryImage {
   id: number;
   title: string;

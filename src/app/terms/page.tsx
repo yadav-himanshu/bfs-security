@@ -10,10 +10,10 @@ export default function TermsPage() {
   };
 
   return (
-    <section
-      className="relative py-20 min-h-screen transition-colors duration-300 text-[var(--text-color)]">
+    <section className="relative py-20 min-h-screen transition-colors duration-300 text-[var(--text-color)]">
       {/* Glowing Background */}
-      <div className="absolute inset-0 pointer-events-none"
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse at top, rgba(250, 204, 21, 0.1), transparent 70%)",
@@ -35,7 +35,10 @@ export default function TermsPage() {
       >
         {/* Section 1 */}
         <motion.div variants={fadeUp}>
-          <h3 className="subheading mb-2" style={{ color: "var(--highlight-color)" }}>
+          <h3
+            className="subheading mb-2"
+            style={{ color: "var(--highlight-color)" }}
+          >
             Acceptance of Terms
           </h3>
           <p>
@@ -51,7 +54,10 @@ export default function TermsPage() {
 
         {/* Section 2 */}
         <motion.div variants={fadeUp}>
-          <h3 className="subheading mb-2" style={{ color: "var(--highlight-color)" }}>
+          <h3
+            className="subheading mb-2"
+            style={{ color: "var(--highlight-color)" }}
+          >
             Services
           </h3>
           <p>
@@ -64,7 +70,10 @@ export default function TermsPage() {
 
         {/* Section 3 */}
         <motion.div variants={fadeUp}>
-          <h3 className="subheading mb-2" style={{ color: "var(--highlight-color)" }}>
+          <h3
+            className="subheading mb-2"
+            style={{ color: "var(--highlight-color)" }}
+          >
             User Responsibilities
           </h3>
           <ul className="list-disc pl-5 sm:pl-8 space-y-2">
@@ -81,7 +90,10 @@ export default function TermsPage() {
 
         {/* Section 4 */}
         <motion.div variants={fadeUp}>
-          <h3 className="subheading mb-2" style={{ color: "var(--highlight-color)" }}>
+          <h3
+            className="subheading mb-2"
+            style={{ color: "var(--highlight-color)" }}
+          >
             Limitation of Liability
           </h3>
           <p>
@@ -94,7 +106,10 @@ export default function TermsPage() {
 
         {/* Section 5 */}
         <motion.div variants={fadeUp}>
-          <h3 className="subheading mb-2" style={{ color: "var(--highlight-color)" }}>
+          <h3
+            className="subheading mb-2"
+            style={{ color: "var(--highlight-color)" }}
+          >
             Contact
           </h3>
           <p>

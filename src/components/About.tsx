@@ -8,13 +8,14 @@ export default function About() {
       <div className="absolute left-0 top-1/3 w-40 h-40 bg-[var(--highlight-color)]/10 blur-[120px] rounded-full"></div>
 
       {/* Heading */}
-      <h2 className="heading text-center mb-8">
-        About Us
-      </h2>
+      <h2 className="heading text-center mb-8">About Us</h2>
 
       {/* Paragraph */}
       <p className="body-text leading-relaxed max-w-4xl mx-auto">
-        <span className="font-semibold" style={{ color: "var(--highlight-color)" }}>
+        <span
+          className="font-semibold"
+          style={{ color: "var(--highlight-color)" }}
+        >
           Bombay Facility Services (BFS)
         </span>{" "}
         is a Mumbai-based manpower and security company offering trained and
