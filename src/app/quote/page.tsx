@@ -1,12 +1,12 @@
-import PageHeader from "@/components/PageHeader";
-import QuoteForm from "@/components/QuoteForm";
+import PageHeader from "@/components/layout/PageHeader";
+import QuoteForm from "@/components/forms/QuoteForm";
 
 export default function QuotePage() {
   return (
     <section className="py-20 overflow-hidden text-[var(--text-color)] transition-colors duration-300">
       <PageHeader
         title="Request a Quote"
-        subtitle="Get a tailored manpower service quote from BFS — professional, reliable, and efficient."
+        subtitle="Get a tailored manpower service quote from BFS - professional, reliable, and efficient."
       />
 
       <div className="max-w-7xl mx-auto px-6 mt-16 grid lg:grid-cols-2 gap-16 items-start">

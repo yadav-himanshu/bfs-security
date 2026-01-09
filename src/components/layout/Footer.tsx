@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { servicesData } from "@/lib/servicesData";
-import bfsLogo from "../../public/bfslogo.png";
+import bfsLogo from "../../../public/bfslogo.png";
 import { motion } from "framer-motion";
 import {
   FaPhoneAlt,

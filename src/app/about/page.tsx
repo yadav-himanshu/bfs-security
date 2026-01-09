@@ -1,4 +1,4 @@
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "@/components/layout/PageHeader";
 import Image from "next/image";
 import SG from "../../../public/img/SG.png";
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
             Established with the vision of promoting safety and efficiency, BFS
             has become a trusted name in the field of security and facility
             management. Our team includes certified guards, caretakers,
-            bouncers, bodyguards, lift operators, and drivers — each trained to
+            bouncers, bodyguards, lift operators, and drivers each trained to
             maintain professionalism, punctuality, and vigilance.
           </p>
         </div>
@@ -75,8 +75,8 @@ export default function AboutPage() {
               </h3>
               <p className="body-text leading-relaxed">
                 To provide safe, disciplined, and dependable manpower solutions
-                that protect people, property, and businesses — ensuring peace
-                of mind through professionalism and integrity.
+                that protect people, property, and businesses ensuring peace of
+                mind through professionalism and integrity.
               </p>
             </div>
 
@@ -95,7 +95,7 @@ export default function AboutPage() {
               </h3>
               <p className="body-text leading-relaxed">
                 To be recognized as the most trusted and efficient facility
-                service provider in India — setting benchmarks for quality,
+                service provider in India setting benchmarks for quality,
                 discipline, and customer satisfaction.
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function AboutPage() {
             },
             {
               title: "Client Focus",
-              desc: "Your satisfaction and safety are our top priorities — always.",
+              desc: "Your satisfaction and safety are our top priorities always.",
             },
           ].map((item) => (
             <div

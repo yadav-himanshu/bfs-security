@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { servicesData } from "@/lib/servicesData";
 
-export default function ContactForm() {
+export default function QuoteForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
+    service: "",
     message: "",
   });
 
@@ -16,7 +18,9 @@ export default function ContactForm() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -27,7 +31,7 @@ export default function ContactForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -37,10 +41,10 @@ export default function ContactForm() {
 
       if (data.success) {
         setStatus("success");
-        setForm({ name: "", email: "", phone: "", message: "" });
+        setForm({ name: "", email: "", phone: "", service: "", message: "" });
       } else {
         setStatus("error");
-        setErrorMsg(data.error || "Something went wrong.");
+        setErrorMsg(data.error || "Failed to submit quote request.");
       }
     } catch {
       setStatus("error");
@@ -52,11 +56,11 @@ export default function ContactForm() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="p-8 rounded-2xl shadow-lg backdrop-blur-sm border transition-all duration-500 hover:shadow-[0_0_20px_var(--highlight-color)]/10"
+        className="card hover:shadow-lg transition-all duration-500"
         style={{
           backgroundColor: "var(--card-bg-color)",
           borderColor: "var(--card-border-color)",
-          color: "var(--text-color)",
+          boxShadow: "0 0 10px rgba(0,0,0,0.15)",
         }}
       >
         <div className="grid gap-5">
@@ -67,9 +71,8 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             required
-            className="input placeholder-opacity-60"
+            className="input"
           />
-
           <input
             type="email"
             name="email"
@@ -77,9 +80,8 @@ export default function ContactForm() {
             value={form.email}
             onChange={handleChange}
             required
-            className="input placeholder-opacity-60"
+            className="input"
           />
-
           <input
             type="tel"
             name="phone"
@@ -87,42 +89,65 @@ export default function ContactForm() {
             value={form.phone}
             onChange={handleChange}
             required
-            className="input placeholder-opacity-60"
+            className="input"
           />
-
+          <select
+            name="service"
+            value={form.service}
+            onChange={handleChange}
+            required
+            className="input"
+          >
+            <option value="">Select Service</option>
+            {servicesData.map((s) => (
+              <option
+                key={s.id}
+                value={s.title}
+                style={{
+                  backgroundColor: "var(--card-bg-color)",
+                  color: "var(--text-color)",
+                }}
+              >
+                {s.title}
+              </option>
+            ))}
+          </select>
           <textarea
             name="message"
-            placeholder="Your Message"
+            placeholder="Additional Details"
             value={form.message}
             onChange={handleChange}
             rows={5}
-            required
-            className="input placeholder-opacity-60"
+            className="input"
           />
 
           <button
             type="submit"
             disabled={status === "sending"}
-            className="button hover:scale-[1.03] active:scale-[0.98] shadow-[0_0_10px_var(--accent-color)]/30"
-            style={{
-              backgroundColor: "var(--highlight-color)",
-              color: "var(--input-text)",
-            }}
+            className="button"
+            // style={{
+            //   backgroundColor: "var(--highlight-color)",
+            //   color: "var(--card-bg-color)",
+            //   boxShadow: "0 0 10px var(--highlight-color)",
+            // }}
           >
-            {status === "sending" ? "Sending..." : "Send Message"}
+            {status === "sending" ? "Sending..." : "Request Quote"}
           </button>
         </div>
       </form>
 
       {/* Status Message */}
-      <div className="max-w-2xl mx-auto mt-5 text-center text-sm">
+      <div className="max-w-2xl mx-auto mt-5 text-center text-sm body-text">
         {status === "success" && (
-          <p style={{ color: "limegreen" }} className="animate-pulse">
-            Message sent successfully!
+          <p
+            style={{ color: "var(--highlight-color)" }}
+            className="animate-pulse"
+          >
+            Quote request sent successfully!
           </p>
         )}
         {status === "error" && (
-          <p style={{ color: "#f87171" }}>{errorMsg}</p> // red tone
+          <p style={{ color: "var(--accent-color)" }}>{errorMsg}</p>
         )}
       </div>
     </>

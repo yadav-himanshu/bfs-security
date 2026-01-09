@@ -2,8 +2,8 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import PageHeader from "@/components/PageHeader";
-import ApplyForm from "@/components/ApplyForm";
+import PageHeader from "@/components/layout/PageHeader";
+import ApplyForm from "@/components/forms/ApplyForm";
 
 // This inner component actually uses useSearchParams()
 function ApplyPageContent() {
@@ -12,10 +12,10 @@ function ApplyPageContent() {
 
   return (
     <section
-      className="py-20 text-[var(--text-color)]"
-      style={{
-        transition: "background 0.5s ease, color 0.5s ease",
-      }}
+      className="py-20"
+      // style={{
+      //   transition: "background 0.5s ease, color 0.5s ease",
+      // }}
     >
       <PageHeader
         title="Apply for a Position"

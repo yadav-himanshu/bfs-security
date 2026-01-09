@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import bfsLogo from "../../public/bfslogo.png";
+import bfsLogo from "../../../public/bfslogo.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

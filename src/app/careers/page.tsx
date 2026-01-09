@@ -1,6 +1,6 @@
 "use client";
-import PageHeader from "@/components/PageHeader";
-import CareerCard from "@/components/CareerCard";
+import PageHeader from "@/components/layout/PageHeader";
+import CareerCard from "@/components/cards/CareerCard";
 import { jobsData } from "@/lib/jobsData";
 import { motion } from "framer-motion";
 

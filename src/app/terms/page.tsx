@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PageHeader from "@/components/PageHeader";
+import PageHeader from "@/components/layout/PageHeader";
 
 export default function TermsPage() {
   const fadeUp = {

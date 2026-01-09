@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { servicesData } from "@/lib/servicesData";
 
-export default function QuoteForm() {
+export default function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
-    service: "",
     message: "",
   });
 
@@ -18,9 +16,7 @@ export default function QuoteForm() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -31,7 +27,7 @@ export default function QuoteForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/quote", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -41,10 +37,10 @@ export default function QuoteForm() {
 
       if (data.success) {
         setStatus("success");
-        setForm({ name: "", email: "", phone: "", service: "", message: "" });
+        setForm({ name: "", email: "", phone: "", message: "" });
       } else {
         setStatus("error");
-        setErrorMsg(data.error || "Failed to submit quote request.");
+        setErrorMsg(data.error || "Something went wrong.");
       }
     } catch {
       setStatus("error");
@@ -56,11 +52,11 @@ export default function QuoteForm() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="card hover:shadow-lg transition-all duration-500"
+        className="p-8 rounded-2xl shadow-lg backdrop-blur-sm border transition-all duration-500 hover:shadow-[0_0_20px_var(--highlight-color)]/10"
         style={{
           backgroundColor: "var(--card-bg-color)",
           borderColor: "var(--card-border-color)",
-          boxShadow: "0 0 10px rgba(0,0,0,0.15)",
+          color: "var(--text-color)",
         }}
       >
         <div className="grid gap-5">
@@ -71,8 +67,9 @@ export default function QuoteForm() {
             value={form.name}
             onChange={handleChange}
             required
-            className="input"
+            className="input placeholder-opacity-60"
           />
+
           <input
             type="email"
             name="email"
@@ -80,8 +77,9 @@ export default function QuoteForm() {
             value={form.email}
             onChange={handleChange}
             required
-            className="input"
+            className="input placeholder-opacity-60"
           />
+
           <input
             type="tel"
             name="phone"
@@ -89,65 +87,38 @@ export default function QuoteForm() {
             value={form.phone}
             onChange={handleChange}
             required
-            className="input"
+            className="input placeholder-opacity-60"
           />
-          <select
-            name="service"
-            value={form.service}
-            onChange={handleChange}
-            required
-            className="input"
-          >
-            <option value="">Select Service</option>
-            {servicesData.map((s) => (
-              <option
-                key={s.id}
-                value={s.title}
-                style={{
-                  backgroundColor: "var(--card-bg-color)",
-                  color: "var(--text-color)",
-                }}
-              >
-                {s.title}
-              </option>
-            ))}
-          </select>
+
           <textarea
             name="message"
-            placeholder="Additional Details"
+            placeholder="Your Message"
             value={form.message}
             onChange={handleChange}
             rows={5}
-            className="input"
+            required
+            className="input placeholder-opacity-60"
           />
 
           <button
             type="submit"
             disabled={status === "sending"}
-            className="button"
-            style={{
-              backgroundColor: "var(--highlight-color)",
-              color: "var(--card-bg-color)",
-              boxShadow: "0 0 10px var(--highlight-color)",
-            }}
+            className="button hover:scale-[1.03] active:scale-[0.98] shadow-[0_0_10px_var(--accent-color)]/30"
           >
-            {status === "sending" ? "Sending..." : "Request Quote"}
+            {status === "sending" ? "Sending..." : "Send Message"}
           </button>
         </div>
       </form>
 
       {/* Status Message */}
-      <div className="max-w-2xl mx-auto mt-5 text-center text-sm body-text">
+      <div className="max-w-2xl mx-auto mt-5 text-center text-sm">
         {status === "success" && (
-          <p
-            style={{ color: "var(--highlight-color)" }}
-            className="animate-pulse"
-          >
-            Quote request sent successfully!
+          <p style={{ color: "limegreen" }} className="animate-pulse">
+            Message sent successfully!
           </p>
         )}
         {status === "error" && (
-          <p style={{ color: "var(--accent-color)" }}>{errorMsg}</p>
+          <p style={{ color: "#f87171" }}>{errorMsg}</p> // red tone
         )}
       </div>
     </>

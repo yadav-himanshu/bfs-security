@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTopButton";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import ThemeToggle from "@/components/ThemeToggle";
-import { ThemeProvider } from "@/components/providers";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/floating-buttons/ScrollToTopButton";
+import WhatsAppButton from "@/components/floating-buttons/WhatsAppButton";
+import ThemeToggle from "@/components/floating-buttons/ThemeToggle";
+import { ThemeProvider } from "@/components/utilities/providers";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({

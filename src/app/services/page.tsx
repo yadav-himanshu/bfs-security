@@ -2,18 +2,12 @@
 
 import { motion } from "framer-motion";
 import { servicesData } from "@/lib/servicesData";
-import ServiceCard from "@/components/ServiceCard";
-import PageHeader from "@/components/PageHeader";
+import ServiceCard from "@/components/cards/ServiceCard";
+import PageHeader from "@/components/layout/PageHeader";
 
 export default function ServicesPage() {
   return (
-    <section
-      className="py-20 transition-colors duration-300"
-      style={{
-        // background: "var(--bg-color)",
-        color: "var(--text-color)",
-      }}
-    >
+    <section className="py-20 transition-colors duration-300">
       <PageHeader
         title="Our Services"
         subtitle="Professional manpower solutions for security and facility management."

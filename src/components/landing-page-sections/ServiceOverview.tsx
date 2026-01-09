@@ -67,7 +67,7 @@ const services = [
 
 export default function ServicesOverview() {
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
+    <section id="services" className="py-6 md:py-24 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
         {/* Heading */}
         <motion.h2
@@ -75,8 +75,7 @@ export default function ServicesOverview() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false }}
-          className="heading text-3xl sm:text-4xl md:text-5xl font-bold mb-12"
-          style={{ color: "var(--highlight-color)" }}
+          className="heading mb-10"
         >
           Our Services
         </motion.h2>
@@ -97,21 +96,13 @@ export default function ServicesOverview() {
             >
               <Link
                 href={`/services/${srv.slug}`}
-                className="min-h-[250px] group bg-[var(--card-bg-color)] border border-[var(--card-border-color)] p-8 rounded-2xl shadow-lg hover:shadow-[0_0_25px_var(--highlight-color)] hover:-translate-y-2 transition-all duration-300 text-center flex flex-col justify-center"
+                className="card min-h-[150px] md:min-h-[250px] p-4 md:p-8 hover:shadow-[0_0_4px_var(--highlight-color)] hover:-translate-y-2 transition-all duration-300 text-center flex flex-col justify-center"
               >
                 <div className="flex justify-center mb-5">{srv.icon}</div>
-                <h3
-                  className="text-2xl font-semibold mb-3"
-                  style={{ color: "var(--highlight-color)" }}
-                >
+                <h3 className="subheading md:text-2xl text-[var(--highlight-color)]">
                   {srv.title}
                 </h3>
-                <p
-                  className="body-text text-base leading-relaxed"
-                  style={{ color: "var(--text-color)" }}
-                >
-                  {srv.desc}
-                </p>
+                <p className="caption leading-relaxed">{srv.desc}</p>
               </Link>
             </motion.div>
           ))}
@@ -125,32 +116,19 @@ export default function ServicesOverview() {
           >
             <Link
               href="/services"
-              className="min-h-[250px] flex flex-col items-center justify-center bg-[var(--card-bg-color)] border border-[var(--card-border-color)] p-8 rounded-2xl shadow-lg hover:shadow-[0_0_25px_var(--highlight-color)] hover:-translate-y-2 transition-all duration-300"
+              className="card min-h-[150px] md:min-h-[250px] p-4 md:p-8 flex flex-col items-center justify-center hover:shadow-[0_0_4px_var(--highlight-color)] hover:-translate-y-2 transition-all duration-300"
             >
               <ArrowRight
                 className="w-12 h-12 mb-3"
                 style={{ color: "var(--highlight-color)" }}
               />
-              <h3
-                className="text-2xl font-semibold"
-                style={{ color: "var(--highlight-color)" }}
-              >
+              <h3 className="subheading md:text-2xl text-[var(--highlight-color)]">
                 View All
               </h3>
             </Link>
           </motion.div>
         </div>
       </div>
-
-      {/* Soft background glow */}
-      <div
-        className="absolute inset-0 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle at center, var(--highlight-color) 10%, transparent 70%)",
-          opacity: 0.1,
-        }}
-      ></div>
     </section>
   );
 }

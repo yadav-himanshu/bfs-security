@@ -10,13 +10,7 @@ interface Props {
 
 export default function ServiceCard({ service }: Props) {
   return (
-    <div
-      className="rounded-2xl shadow-md overflow-hidden hover:-translate-y-1 hover:shadow-[0_0_15px_var(--highlight-color)]/20 transition-all duration-300 group"
-      style={{
-        backgroundColor: "var(--card-bg-color)",
-        border: "1px solid var(--card-border-color)",
-      }}
-    >
+    <div className="card p-0 overflow-hidden hover:-translate-y-1 hover:shadow-[0_0_15px_var(--highlight-color)]/20 transition-all duration-300 group">
       {/* Image */}
       <div className="relative w-full h-56 overflow-hidden">
         <Image
@@ -46,8 +40,7 @@ export default function ServiceCard({ service }: Props) {
 
         <Link
           href={`/services/${service.slug}`}
-          className="font-medium transition-colors duration-300"
-          style={{ color: "var(--accent-color)" }}
+          className="link font-medium transition-colors duration-300"
         >
           Read More →
         </Link>

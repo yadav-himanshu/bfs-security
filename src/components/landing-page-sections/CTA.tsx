@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CTA() {
   return (
-    <section className="py-24 text-center text-[var(--text-color)] relative overflow-hidden">
+    <section className="py-12 md:py-24 px-8 text-center relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2),transparent_70%)] opacity-30 animate-pulse pointer-events-none"></div>
 
@@ -15,8 +15,7 @@ export default function CTA() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="text-4xl font-bold mb-4 drop-shadow-lg"
-        style={{ color: "var(--heading-color)" }}
+        className="heading mb-4 drop-shadow-lg"
       >
         Need Reliable Security Services?
       </motion.h2>
@@ -27,8 +26,7 @@ export default function CTA() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3 }}
         viewport={{ once: true }}
-        className="max-w-2xl mx-auto mb-8 text-lg"
-        style={{ color: "var(--subheading-color)" }}
+        className="body-text max-w-2xl mx-auto mb-8"
       >
         Hire trained professionals today and ensure complete peace of mind with
         BFS.
@@ -43,11 +41,7 @@ export default function CTA() {
       >
         <Link
           href="/contact"
-          className="px-8 py-3 rounded-md font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:brightness-110 inline-block"
-          style={{
-            backgroundColor: "var(--highlight-color)",
-            color: "var(--input-text)",
-          }}
+          className="button shadow-lg hover:shadow-2xl hover:brightness-110 inline-block"
         >
           Contact Us
         </Link>

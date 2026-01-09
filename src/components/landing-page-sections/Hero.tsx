@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import logo from "../../public/bfslogo.png";
+import logo from "../../../public/bfslogo.png";
 import { motion, Variants, Easing } from "framer-motion";
 
 export default function Hero() {
@@ -36,7 +36,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-[90vh] flex flex-col justify-center text-[var(--text-color)] items-center text-center px-6 relative overflow-hidden">
+    <section className="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
       {/* 🔹 Watermark / Shadow Logo */}
       <div
         className="
@@ -46,13 +46,10 @@ export default function Hero() {
                 bg-[length:60%] sm:bg-[length:40%]
               "
         style={{
-          backgroundImage: `url(${logo.src})`, // ✅ your PNG logo path
-          filter: "blur(1px)", // soft watermark effect
+          backgroundImage: `url(${logo.src})`,
+          filter: "blur(1px)",
         }}
       ></div>
-
-      {/* 🔹 Optional Subtle Glow Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2),transparent_70%)] opacity-20 pointer-events-none"></div>
 
       {/* Content */}
       <motion.div
@@ -61,24 +58,14 @@ export default function Hero() {
         animate="show"
         className="z-10 w-full"
       >
-        <motion.h1
-          variants={item}
-          className="heading text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 tracking-wide"
-          style={{ color: "var(--highlight-color)" }}
-        >
+        <motion.h1 variants={item} className="heading mb-6 tracking-wide">
           Bombay Facility Services
         </motion.h1>
 
-        <motion.p
-          variants={item}
-          className="body-text max-w-2xl mx-auto mb-10 leading-relaxed text-base sm:text-lg md:text-xl"
-        >
+        <motion.p variants={item} className="body-text max-w-2xl mx-auto mb-10">
           Mumbai’s trusted manpower & security service. Professional, reliable,
-          and dedicated to your safety —{" "}
-          <span
-            className="font-semibold"
-            style={{ color: "var(--highlight-color)" }}
-          >
+          and dedicated to your safety{" "}
+          <span className="font-semibold text-[var(--highlight-color)]">
             guards, bouncers, caretakers, and drivers.
           </span>
         </motion.p>
@@ -89,12 +76,8 @@ export default function Hero() {
         >
           <motion.div whileHover={buttonHover} whileTap={{ scale: 0.95 }}>
             <Link
-              href="/contact"
-              className="w-full sm:w-auto px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300 inline-block"
-              style={{
-                backgroundColor: "var(--highlight-color)",
-                color: "var(--input-text)",
-              }}
+              href="/quote"
+              className="button w-full sm:w-auto shadow-md inline-block"
             >
               Get a Quote
             </Link>
@@ -103,11 +86,7 @@ export default function Hero() {
           <motion.div whileHover={buttonHover} whileTap={{ scale: 0.95 }}>
             <Link
               href="/services"
-              className="w-full sm:w-auto px-6 py-3 rounded-md font-semibold border inline-block transition-all duration-300"
-              style={{
-                borderColor: "var(--highlight-color)",
-                color: "var(--highlight-color)",
-              }}
+              className="button w-full bg-transparent text-[var(--highlight-color)] sm:w-auto border inline-block"
             >
               Our Services
             </Link>

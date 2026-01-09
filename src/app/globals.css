@@ -9,11 +9,11 @@ html {
    ============================== */
 :root {
   /* Light Theme */
-  --bg-color: linear-gradient(-45deg, #f0f9ff, #fdf0ea, #e8feee, #fffdea);
+  --bg-color: linear-gradient(180deg, #f7f7f7 0%, #ececec 100%);
   --heading-color: #1a1a1a;
   --subheading-color: #4b5563;
   --text-color: #374151;
-  --accent-color: #2563eb;
+  --button-text: #dcf1fb;
   --highlight-color: #eab308; /* gold/yellow highlight */
   --card-bg-color: #ffffff;
   --card-border-color: #e5e7eb; /* soft gray border */
@@ -23,17 +23,11 @@ html {
 
 .dark {
   /* Dark Theme */
-  --bg-color: linear-gradient(
-    -30deg,
-    #1f0e01 30%,
-    #02232b 65%,
-    #020617 0%,
-    #0d2900 100%
-  );
+  --bg-color: linear-gradient(180deg, #0a0a0a 0%, #121212 100%);
   --heading-color: #f1f5f9;
   --subheading-color: #cbd5e1;
   --text-color: #94a3b8;
-  --accent-color: #38bdf8;
+  --button-text: #011e2b;
   --highlight-color: #facc15; /* bright yellow highlight */
   --card-bg-color: #1e293b; /* slightly lighter than body */
   --card-border-color: rgba(255, 255, 255, 0.15); /* subtle visible outline */
@@ -46,24 +40,7 @@ html {
    ============================== */
 body {
   background: var(--bg-color);
-  background-size: 300% 300%;
-  animation: aurora 15s ease-in-out infinite; /* slower, smoother movement */
   color: var(--text-color);
-  transition:
-    color 0.5s ease,
-    background 0.5s ease;
-}
-
-@keyframes aurora {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* ==============================
@@ -91,8 +68,8 @@ body {
   }
 
   .link {
-    @apply underline font-medium transition-colors;
-    color: var(--accent-color);
+    @apply font-medium transition-colors;
+    color: var(--highlight-color);
   }
   .link:hover {
     opacity: 0.8;
@@ -100,7 +77,7 @@ body {
 
   .button {
     @apply px-4 py-2 rounded-lg font-semibold transition-transform duration-200;
-    background-color: var(--accent-color);
+    background-color: var(--highlight-color);
     color: var(--button-text);
   }
   .button:hover {
@@ -110,8 +87,8 @@ body {
 
   .card {
     @apply rounded-2xl shadow-lg p-6 transition-colors duration-300;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
   }
 
   .input {
@@ -121,7 +98,7 @@ body {
     border-color: var(--border-color);
   }
   .input:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px var(--accent-color);
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 2px var(--highlight-color);
   }
 }

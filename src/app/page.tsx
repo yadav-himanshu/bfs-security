@@ -1,8 +1,8 @@
 // app/page.tsx
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import ServicesOverview from "@/components/ServiceOverview";
-import CTA from "@/components/CTA";
+import Hero from "@/components/landing-page-sections/Hero";
+import About from "@/components/landing-page-sections/About";
+import ServicesOverview from "@/components/landing-page-sections/ServiceOverview";
+import CTA from "@/components/landing-page-sections/CTA";
 
 export default function Home() {
   return (

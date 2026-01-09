@@ -4,8 +4,8 @@ import { servicesData } from "@/lib/servicesData";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import PageHeader from "@/components/PageHeader";
-import Breadcrumb from "@/components/Breadcrumb";
+import PageHeader from "@/components/layout/PageHeader";
+import Breadcrumb from "@/components/utilities/Breadcrumb";
 
 /**
  * ✅ Define params as a Promise to match Next.js 15 build expectations.
@@ -104,22 +104,18 @@ export default async function Page({ params }: ServicePageProps) {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/quote"
-                className="px-6 py-3 rounded-lg font-semibold shadow-md hover:-translate-y-1 transition-all duration-300"
-                style={{
-                  backgroundColor: "var(--highlight-color)",
-                  color: "#111",
-                }}
+                className="button hover:-translate-y-1 transition-all duration-300"
+                // style={{
+                //   backgroundColor: "var(--highlight-color)",
+                //   color: "#111",
+                // }}
               >
                 Get a Quote
               </Link>
 
               <Link
                 href="/contact"
-                className="px-6 py-3 rounded-lg font-semibold transition-all duration-300 border hover:-translate-y-1"
-                style={{
-                  borderColor: "var(--highlight-color)",
-                  color: "var(--highlight-color)",
-                }}
+                className="button bg-transparent text-[var(--highlight-color)] transition-all duration-300 border hover:-translate-y-1"
               >
                 Contact Us
               </Link>

@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import PageHeader from "@/components/PageHeader";
-import GalleryCard from "@/components/GalleryCard";
+import PageHeader from "@/components/layout/PageHeader";
+import GalleryCard from "@/components/cards/GalleryCard";
 import { galleryData } from "@/lib/galleryData";
-import GalleryModal from "@/components/GalleryModal";
+import GalleryModal from "@/components/modals/GalleryModal";
 
 export default function GalleryPage() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function GalleryPage() {
     <section className="py-12 sm:py-16 min-h-screen transition-colors duration-300 text-[var(--text-color)]">
       <PageHeader
         title="Gallery"
-        subtitle="Our team in action — delivering trust, discipline, and safety."
+        subtitle="Our team in action- delivering trust, discipline, and safety."
       />
 
       <div className="max-w-7xl mx-auto px-6 mt-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">

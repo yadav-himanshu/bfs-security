@@ -12,12 +12,7 @@ export default function CareerCard({ job }: Props) {
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}
-      className="rounded-2xl h-full p-6 border flex flex-col justify-between transition-all duration-300 shadow-md hover:shadow-[0_0_15px_var(--highlight-color)]"
-      style={{
-        background: "var(--card-bg-color)",
-        color: "var(--text-color)",
-        borderColor: "var(--card-border-color)",
-      }}
+      className="card h-full p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_0_15px_var(--highlight-color)]"
     >
       {/* Title */}
       <h3
@@ -56,17 +51,7 @@ export default function CareerCard({ job }: Props) {
       {/* Apply Button */}
       <Link
         href={`/careers/apply?position=${encodeURIComponent(job.title)}`}
-        className="mt-5 inline-block max-w-[150px] text-center font-semibold px-5 py-2 rounded-lg transition-all hover:scale-[1.03] duration-300"
-        style={{
-          backgroundColor: "var(--highlight-color)",
-          color: "var(--input-text)",
-        }}
-        // onMouseEnter={(e) =>
-        //   (e.currentTarget.style.backgroundColor = "var(--highlight-hover)")
-        // }
-        // onMouseLeave={(e) =>
-        //   (e.currentTarget.style.backgroundColor = "var(--highlight-color)")
-        // }
+        className="button mt-5 inline-block max-w-[150px] text-center transition-all hover:scale-[1.03] duration-300"
       >
         Apply Now
       </Link>
