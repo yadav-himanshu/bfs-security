@@ -7,7 +7,7 @@ import PageHeader from "@/components/layout/PageHeader";
 
 export default function ServicesPage() {
   return (
-    <section className="py-20 transition-colors duration-300">
+    <section className="py-20">
       <PageHeader
         title="Our Services"
         subtitle="Professional manpower solutions for security and facility management."

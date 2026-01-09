@@ -4,7 +4,7 @@ import SG from "../../../public/img/SG.png";
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="py-20">
       <PageHeader title="About Us" subtitle="Who We Are" />
 
       {/* Company Overview */}
@@ -150,6 +150,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }

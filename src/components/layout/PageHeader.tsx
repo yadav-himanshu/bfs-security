@@ -8,7 +8,7 @@ interface PageHeaderProps {
 export default function PageHeader({ title, subtitle }: PageHeaderProps) {
   return (
     <section
-      className="pt-24 pb-5 overflow-hidden flex justify-center items-center"
+      className="p-6 overflow-hidden flex justify-center items-center"
       style={{
         background: "var(--bg-color)",
       }}
