@@ -15,43 +15,39 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden pt-16 pb-8 text-[var(--text-color)] border-t border-[var(--text-color)]/20">
-      {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div> */}
+    <footer className="relative overflow-hidden pt-20 pb-10 bg-[var(--card-bg-color)] text-[var(--text-color)] border-t border-[var(--card-border-color)]">
+      {/* Subtle Top Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-1 bg-gradient-to-r from-transparent via-[var(--highlight-color)] to-transparent opacity-30 blur-sm"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
         {/* Logo Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-4"
+          className="space-y-6"
         >
-          <div className="flex items-center space-x-2">
-            <Image
-              src={bfsLogo}
-              alt="BFS Logo"
-              width={55}
-              height={55}
-              className="rounded-md"
-            />
-            <h2
-              className="text-xl font-semibold"
-              style={{ color: "var(--heading-color)" }}
-            >
-              Bombay Facility Services
+          <div className="flex items-center space-x-3">
+            <div className="bg-white p-1 rounded-xl shadow-sm">
+              <Image
+                src={bfsLogo}
+                alt="BFS Logo"
+                width={55}
+                height={55}
+                className="rounded-lg"
+              />
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--heading-color)] leading-tight">
+              Bombay<br /> Facility Services
             </h2>
           </div>
 
-          <p
-            className="text-sm leading-relaxed max-w-xs"
-            style={{ color: "var(--subheading-color)" }}
-          >
-            Providing professional manpower services across Mumbai with
+          <p className="text-sm leading-relaxed text-[var(--subheading-color)] max-w-sm">
+            Providing professional manpower and elite security services across Mumbai with
             excellence, discipline, and trust.
           </p>
 
-          {/* ✅ Social Media Icons (exact original size, hover kept) */}
-          <div className="flex space-x-3 pt-3">
+          <div className="flex space-x-4 pt-2">
             {[
               { icon: <FaFacebookF />, href: "https://facebook.com" },
               { icon: <FaLinkedinIn />, href: "https://linkedin.com" },
@@ -61,12 +57,9 @@ export default function Footer() {
                 key={i}
                 href={social.href}
                 target="_blank"
-                className="transition-colors duration-300"
-                style={{ color: "var(--text-color)" }}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--input-bg)] text-[var(--text-color)] hover:bg-[var(--highlight-color)] hover:text-black hover:-translate-y-1 transition-all duration-300 shadow-sm"
               >
-                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-[var(--input-bg)] hover:bg-[var(--highlight-color)] hover:text-black transition-colors duration-300 text-sm">
-                  {social.icon}
-                </div>
+                {social.icon}
               </Link>
             ))}
           </div>
@@ -78,20 +71,16 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          <h3
-            className="text-lg font-semibold mb-4"
-            style={{ color: "var(--heading-color)" }}
-          >
-            Quick Links
+          <h3 className="text-xl font-bold mb-6 text-[var(--heading-color)]">
+            Explore
           </h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-3">
             {[
               { name: "Home", link: "/" },
               { name: "About Us", link: "/about" },
-              { name: "Services", link: "/services" },
               { name: "Careers", link: "/careers" },
               { name: "Contact", link: "/contact" },
-              { name: "Quote", link: "/quote" },
+              { name: "Request a Quote", link: "/quote" },
               { name: "Gallery", link: "/gallery" },
               { name: "Privacy Policy", link: "/privacy" },
               { name: "Terms & Conditions", link: "/terms" },
@@ -99,7 +88,7 @@ export default function Footer() {
               <li key={i}>
                 <Link
                   href={item.link}
-                  className="transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+                  className="inline-block text-[var(--subheading-color)] hover:text-[var(--highlight-color)] hover:translate-x-2 transition-all duration-300 font-medium"
                 >
                   {item.name}
                 </Link>
@@ -114,18 +103,15 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <h3
-            className="text-lg font-semibold mb-4"
-            style={{ color: "var(--heading-color)" }}
-          >
+          <h3 className="text-xl font-bold mb-6 text-[var(--heading-color)]">
             Our Services
           </h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-3">
             {servicesData.map((service) => (
               <li key={service.id}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+                  className="inline-block text-[var(--subheading-color)] hover:text-[var(--highlight-color)] hover:translate-x-2 transition-all duration-300 font-medium"
                 >
                   {service.title}
                 </Link>
@@ -139,69 +125,60 @@ export default function Footer() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="space-y-3"
+          className="space-y-6"
         >
-          <h3
-            className="text-lg font-semibold mb-4"
-            style={{ color: "var(--heading-color)" }}
-          >
-            Get in Touch
+          <h3 className="text-xl font-bold mb-6 text-[var(--heading-color)]">
+            Reach Out
           </h3>
 
-          {/* 📞 Phone (Reference) */}
-          <div className="flex items-center space-x-3 group transition-all duration-300">
-            <div className="p-2 rounded-full transition-all duration-300 bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)]">
-              <FaPhoneAlt className="text-[var(--highlight-color)] group-hover:text-[var(--input-text)] transition-all duration-300" />
+          <div className="flex items-center space-x-4 group">
+            <div className="p-3 rounded-xl bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)] transition-colors duration-300">
+              <FaPhoneAlt className="text-[var(--highlight-color)] group-hover:text-black transition-colors duration-300" />
             </div>
             <a
               href="tel:+917499506824"
-              className="text-sm text-[var(--text-color)] transition-colors duration-300 group-hover:text-[var(--highlight-color)]"
+              className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium"
             >
               +91 7499506824
             </a>
           </div>
 
-          {/* 📧 Email */}
-          <div className="flex items-center space-x-3 group transition-all duration-300">
-            <div className="p-2 rounded-full transition-all duration-300 bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)]">
-              <FaEnvelope className="text-[var(--highlight-color)] group-hover:text-[var(--input-text)] transition-all duration-300" />
+          <div className="flex items-center space-x-4 group">
+            <div className="p-3 rounded-xl bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)] transition-colors duration-300">
+              <FaEnvelope className="text-[var(--highlight-color)] group-hover:text-black transition-colors duration-300" />
             </div>
             <a
               href="mailto:himanshuyadav7852@gmail.com"
-              className="text-sm text-[var(--text-color)] transition-colors duration-300 group-hover:text-[var(--highlight-color)]"
+              className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium break-all"
             >
               himanshuyadav7852@gmail.com
             </a>
           </div>
 
-          {/* 📍 Address */}
-          <div className="flex items-start space-x-3 group transition-all duration-300">
-            <div className="p-2 rounded-full transition-all duration-300 bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)]">
-              <FaMapMarkerAlt className="text-[var(--highlight-color)] group-hover:text-[var(--input-text)] mt-1 transition-all duration-300" />
+          <div className="flex items-start space-x-4 group">
+            <div className="p-3 rounded-xl bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)] transition-colors duration-300 shrink-0">
+              <FaMapMarkerAlt className="text-[var(--highlight-color)] group-hover:text-black transition-colors duration-300" />
             </div>
             <a
               href="https://maps.google.com/?q=Jai+Ambe+Soc.+MG+Cross+Road+No+3,+Kandivali+West,+Mumbai"
               target="_blank"
-              className="text-sm leading-snug text-[var(--text-color)] transition-colors duration-300 group-hover:text-[var(--highlight-color)]"
+              className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium leading-relaxed"
             >
-              Jai Ambe Soc. MG Cross Road No 3, Kandivali West, Mumbai
+              Jai Ambe Soc. MG Cross Road No 3,
+              <br />Kandivali West, Mumbai
             </a>
           </div>
         </motion.div>
       </div>
 
       {/* Bottom Bar */}
-      <div
-        className="mt-12 border-t pt-6 text-center text-sm transition-colors duration-300"
-        style={{
-          borderColor: "var(--card-border-color)",
-          color: "var(--subheading-color)",
-        }}
-      >
-        <span className="hover:text-[var(--highlight-color)] transition-colors duration-300">
-          © {new Date().getFullYear()} Bombay Facility Services. All rights
-          reserved.
-        </span>
+      <div className="mt-16 border-t border-[var(--card-border-color)] pt-8 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-6 text-sm text-[var(--subheading-color)]">
+        <p className="hover:text-[var(--highlight-color)] transition-colors duration-300 mb-4 md:mb-0">
+          © {new Date().getFullYear()} Bombay Facility Services. All rights reserved.
+        </p>
+        <p>
+          Built with 💛 in Mumbai
+        </p>
       </div>
     </footer>
   );
