@@ -82,7 +82,7 @@ export default function QuoteForm() {
         <h2 className="text-2xl font-extrabold text-[var(--heading-color)] mb-2">
           Request Form
         </h2>
-        <p className="text-[var(--subheading-color)] text-sm">Tell us what you need, and we'll handle the rest.</p>
+        <p className="text-[var(--subheading-color)] text-sm">Tell us what you need, and we&apos;ll handle the rest.</p>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5 mb-5 relative z-10">

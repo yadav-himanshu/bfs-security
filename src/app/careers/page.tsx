@@ -31,7 +31,7 @@ export default function CareersPage() {
           transition={{ delay: 0.1 }}
           className="text-lg leading-relaxed text-[var(--subheading-color)] max-w-2xl mx-auto mb-16"
         >
-          We are always looking for dedicated individuals to join our growing team. Explore our current job opportunities and build your career with Mumbai's most trusted facility services.
+          We are always looking for dedicated individuals to join our growing team. Explore our current job opportunities and build your career with Mumbai&apos;s most trusted facility services.
         </motion.p>
       </div>
 
