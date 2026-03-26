@@ -1,6 +1,12 @@
-// src/lib/servicesData.ts
 import { StaticImageData } from "next/image";
-import SG from "../../public/img/SG.png";
+import SecurityImage from "../../public/img/services/security-guards.png";
+import BouncersImage from "../../public/img/services/bouncers.png";
+import BodyGuardsImage from "../../public/img/services/body-guards.png";
+import CareTakersImage from "../../public/img/services/care-takers.png";
+import LadyGuardsImage from "../../public/img/services/lady-guards.png";
+import LiftManImage from "../../public/img/services/lift-man.png";
+import DriversImage from "../../public/img/services/drivers.png";
+
 export interface Service {
   id: number;
   title: string;
@@ -15,7 +21,7 @@ export const servicesData: Service[] = [
     id: 1,
     title: "Security Guards",
     slug: "security-guards",
-    image: SG,
+    image: SecurityImage,
     shortDesc:
       "Trained and uniformed guards ensuring 24/7 safety and asset protection for your premises.",
     fullDesc:
@@ -25,7 +31,7 @@ export const servicesData: Service[] = [
     id: 2,
     title: "Bouncers",
     slug: "bouncers",
-    image: SG,
+    image: BouncersImage,
     shortDesc:
       "Strong, disciplined, and courteous bouncers for clubs, events, and personal protection.",
     fullDesc:
@@ -35,7 +41,7 @@ export const servicesData: Service[] = [
     id: 3,
     title: "Body Guards",
     slug: "body-guards",
-    image: SG,
+    image: BodyGuardsImage,
     shortDesc:
       "Professional bodyguards for VIPs, executives, and personal protection requirements.",
     fullDesc:
@@ -45,7 +51,7 @@ export const servicesData: Service[] = [
     id: 4,
     title: "Care Takers",
     slug: "care-takers",
-    image: SG,
+    image: CareTakersImage,
     shortDesc:
       "Reliable caretakers for residential, office, and property maintenance needs.",
     fullDesc:
@@ -55,7 +61,7 @@ export const servicesData: Service[] = [
     id: 5,
     title: "Lady Guards",
     slug: "lady-guards",
-    image: SG,
+    image: LadyGuardsImage,
     shortDesc:
       "Trained and disciplined lady guards for offices, malls, schools, and hospitals.",
     fullDesc:
@@ -65,7 +71,7 @@ export const servicesData: Service[] = [
     id: 6,
     title: "Lift Man",
     slug: "lift-man",
-    image: SG,
+    image: LiftManImage,
     shortDesc:
       "Courteous and responsible lift operators for commercial and residential buildings.",
     fullDesc:
@@ -75,7 +81,7 @@ export const servicesData: Service[] = [
     id: 7,
     title: "Drivers",
     slug: "drivers",
-    image: SG,
+    image: DriversImage,
     shortDesc:
       "Experienced and verified drivers for corporate, residential, or event requirements.",
     fullDesc:

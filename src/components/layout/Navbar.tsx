@@ -44,14 +44,16 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Main Links */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-8">
           {mainLinks.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)] "
+              className="relative group font-medium text-[var(--text-color)] transition-colors duration-300 hover:text-[var(--highlight-color)] py-1"
             >
               {item.name}
+              {/* Animated Underline */}
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[var(--highlight-color)] transition-all duration-300 group-hover:w-full rounded-full"></span>
             </Link>
           ))}
         </div>
@@ -67,15 +69,15 @@ export default function Navbar() {
 
       {/* Mobile / Dropdown Menu */}
       {menuOpen && (
-        <div className="px-6 py-4 space-y-3 backdrop-blur-md border-t transition-all duration-300 bg-[var(--card-bg-color)] border-[var(--card-border-color)]">
+        <div className="absolute top-[72px] left-0 w-full px-6 py-6 space-y-4 backdrop-blur-xl bg-[var(--card-bg-color)]/95 border-b border-[var(--card-border-color)] shadow-xl transition-all duration-300">
           {/* Desktop (Secondary Links) */}
-          <div className="hidden md:block">
+          <div className="hidden md:block space-y-3">
             {secondaryLinks.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)] pl-2 border-l-2 border-transparent hover:border-[var(--highlight-color)]"
               >
                 {item.name}
               </Link>
@@ -83,13 +85,13 @@ export default function Navbar() {
           </div>
 
           {/* Mobile (All Links) */}
-          <div className="md:hidden">
+          <div className="md:hidden space-y-4">
             {[...mainLinks, ...secondaryLinks].map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)]"
+                className="block text-lg font-medium transition-colors duration-300 text-[var(--text-color)] hover:text-[var(--highlight-color)] pl-3 border-l-4 border-transparent hover:border-[var(--highlight-color)]"
               >
                 {item.name}
               </Link>

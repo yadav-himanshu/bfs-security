@@ -21,13 +21,16 @@ export default function GalleryPage() {
     setCurrentIndex((prev) => (prev === 0 ? galleryData.length - 1 : prev - 1));
 
   return (
-    <section className="py-12 sm:py-16 min-h-screen transition-colors duration-300 text-[var(--text-color)]">
+    <section className="relative py-20 min-h-screen bg-[var(--bg-color)] transition-colors duration-300 text-[var(--text-color)] overflow-hidden">
+      {/* Glowing Background Orbs */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--highlight-color)]/5 rounded-full blur-[100px] pointer-events-none"></div>
+
       <PageHeader
         title="Gallery"
         subtitle="Our team in action- delivering trust, discipline, and safety."
       />
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-6 mt-16 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 relative z-10">
         {galleryData.map((item, index) => (
           <GalleryCard
             key={item.id}

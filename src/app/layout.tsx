@@ -3,9 +3,9 @@ import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ScrollToTop from "@/components/floating-buttons/ScrollToTopButton";
-import WhatsAppButton from "@/components/floating-buttons/WhatsAppButton";
-import ThemeToggle from "@/components/floating-buttons/ThemeToggle";
+import ScrollToTop from "@/components/ui/ScrollToTopButton";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { ThemeProvider } from "@/components/utilities/providers";
 import { Poppins } from "next/font/google";
 
