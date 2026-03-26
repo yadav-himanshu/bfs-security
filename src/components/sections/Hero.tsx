@@ -36,7 +36,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-gradient-to-b from-black/5 to-transparent dark:from-black/40 dark:to-transparent">
+    <section className="min-h-[90vh] pt-[80px] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-gradient-to-b from-black/5 to-transparent dark:from-black/40 dark:to-transparent">
       {/* Dynamic Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--highlight-color)]/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"></div>
