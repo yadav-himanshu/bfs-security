@@ -139,7 +139,7 @@ export default function Footer() {
               href="tel:+917499506824"
               className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium"
             >
-              +91 7499506824
+              +91 9819758831
             </a>
           </div>
 
@@ -151,7 +151,7 @@ export default function Footer() {
               href="mailto:himanshuyadav7852@gmail.com"
               className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium break-all"
             >
-              himanshuyadav7852@gmail.com
+              info.bombayfacilityservice@gmail.com
             </a>
           </div>
 

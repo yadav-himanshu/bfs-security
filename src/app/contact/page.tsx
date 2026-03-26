@@ -50,12 +50,12 @@ export default function ContactPage() {
               {
                 icon: Phone,
                 title: "Call Us",
-                details: "+91 7499506824"
+                details: "+91 9819758831"
               },
               {
                 icon: Mail,
                 title: "Email Us",
-                details: "himanshuyadav7852@gmail.com"
+                details: "info.bombayfacilityservice@gmail.com"
               }
             ].map((info, idx) => (
               <div key={idx} className="flex gap-4 p-5 rounded-2xl bg-[var(--card-bg-color)] border border-[var(--card-border-color)] hover:shadow-md transition-shadow group">
