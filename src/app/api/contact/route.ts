@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendMail } from "@/lib/sendMail";
+import { sendDualMail } from "@/lib/sendMail";
+import { contactAdminTemplate, contactUserTemplate } from "@/lib/emailTemplates";
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,29 +10,27 @@ export async function POST(req: NextRequest) {
     if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { success: false, error: "All fields are required." },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    const htmlContent = `
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Message:</strong><br/> ${message}</p>
-    `;
+    await sendDualMail({
+      // Admin gets the full submission details
+      adminSubject: `📩 New Contact Enquiry — ${name}`,
+      adminHtml: contactAdminTemplate({ name, email, phone, message }),
 
-    await sendMail({
-      subject: "BFS Contact Form Submission",
-      html: htmlContent,
+      // User gets a warm confirmation
+      userEmail: email,
+      userSubject: "We received your message — BFS",
+      userHtml: contactUserTemplate(name),
     });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error("[contact/route] Email error:", err);
     return NextResponse.json(
-      { success: false, error: (err as Error).message },
-      { status: 500 },
+      { success: false, error: "Failed to send your message. Please try again." },
+      { status: 500 }
     );
   }
 }

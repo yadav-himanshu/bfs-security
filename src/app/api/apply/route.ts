@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { sendDualMail } from "@/lib/sendMail";
+import { applyAdminTemplate, applyUserTemplate } from "@/lib/emailTemplates";
 
 export async function POST(req: Request) {
   try {
@@ -14,53 +15,33 @@ export async function POST(req: Request) {
 
     if (!name || !email || !phone || !position || !resumeFile) {
       return NextResponse.json(
-        { success: false, error: "Missing required fields" },
-        { status: 400 },
+        { success: false, error: "Missing required fields." },
+        { status: 400 }
       );
     }
 
-    // Convert file to buffer for attachment
+    // Convert resume to buffer for email attachment
     const arrayBuffer = await resumeFile.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: Number(process.env.EMAIL_PORT),
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    await sendDualMail({
+      // Admin gets full application + resume attachment
+      adminSubject: `🧑‍💼 New Job Application — ${position} (${name})`,
+      adminHtml: applyAdminTemplate({ name, email, phone, position, message }),
+      attachments: [{ filename: resumeFile.name, content: buffer }],
 
-    // Send email
-    await transporter.sendMail({
-      from: `"BFS Careers" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO,
-      subject: `New Job Application – ${position}`,
-      html: `
-        <h2>New Job Application Received</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Position:</strong> ${position}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-      attachments: [
-        {
-          filename: resumeFile.name,
-          content: buffer,
-        },
-      ],
+      // Applicant gets a warm confirmation with process steps
+      userEmail: email,
+      userSubject: `Application Received — ${position} | BFS`,
+      userHtml: applyUserTemplate(name, position),
     });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Email send error:", err);
+    console.error("[apply/route] Email error:", err);
     return NextResponse.json(
-      { success: false, error: "Server error" },
-      { status: 500 },
+      { success: false, error: "Failed to submit your application. Please try again." },
+      { status: 500 }
     );
   }
 }

@@ -1,41 +1,68 @@
 import nodemailer from "nodemailer";
 
 interface SendMailProps {
+  to: string;
   subject: string;
   html: string;
-  text?: string;
   attachments?: { filename: string; content: Buffer }[];
 }
 
-export async function sendMail({
-  subject,
-  html,
-  text,
-  attachments,
-}: SendMailProps) {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: Number(process.env.EMAIL_PORT),
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+function createTransporter() {
+  return nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT) || 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+}
 
-    await transporter.sendMail({
+export async function sendMail({ to, subject, html, attachments }: SendMailProps) {
+  const transporter = createTransporter();
+  await transporter.sendMail({
+    from: `"Bombay Facility Services" <${process.env.EMAIL_USER}>`,
+    to,
+    subject,
+    html,
+    attachments,
+  });
+}
+
+/** Send both: admin notification + user confirmation in parallel */
+export async function sendDualMail({
+  userEmail,
+  userSubject,
+  userHtml,
+  adminSubject,
+  adminHtml,
+  attachments,
+}: {
+  userEmail: string;
+  userSubject: string;
+  userHtml: string;
+  adminSubject: string;
+  adminHtml: string;
+  attachments?: { filename: string; content: Buffer }[];
+}) {
+  const transporter = createTransporter();
+
+  await Promise.all([
+    // → BFS Admin notification
+    transporter.sendMail({
       from: `"BFS Website" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
-      subject,
-      text: text || "",
-      html,
+      subject: adminSubject,
+      html: adminHtml,
       attachments,
-    });
-
-    console.log("Email sent successfully");
-  } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email");
-  }
+    }),
+    // → User confirmation
+    transporter.sendMail({
+      from: `"Bombay Facility Services" <${process.env.EMAIL_USER}>`,
+      to: userEmail,
+      subject: userSubject,
+      html: userHtml,
+    }),
+  ]);
 }
