@@ -1,184 +1,213 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { servicesData } from "@/lib/servicesData";
+import { 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Facebook, 
+  Linkedin, 
+  Instagram 
+} from "lucide-react";
+import { servicesData } from "@/lib/data/servicesData";
 import bfsLogo from "../../../public/bfslogo.png";
-import { motion } from "framer-motion";
-import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden pt-20 pb-10 bg-[var(--card-bg-color)] text-[var(--text-color)] border-t border-[var(--card-border-color)]">
-      {/* Subtle Top Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-1 bg-gradient-to-r from-transparent via-[var(--highlight-color)] to-transparent opacity-30 blur-sm"></div>
+    <footer className="relative overflow-hidden pt-20 pb-8 bg-[var(--footer-bg)] text-slate-400 border-t border-white/5 bg-grid-pattern">
+      {/* Premium Top Golden Radial Aura */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-[var(--highlight-color)] to-transparent opacity-40"></div>
+      
+      {/* Background Radial Spotlights */}
+      <div className="absolute top-1/4 left-1/10 w-[280px] h-[280px] bg-[var(--highlight-color)]/3 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-10 right-1/10 w-[250px] h-[250px] bg-blue-500/2 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-        {/* Logo Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
-        >
-          <div className="flex items-center space-x-3">
-            <div className="bg-white p-1 rounded-xl shadow-sm">
-              <Image
-                src={bfsLogo}
-                alt="BFS Logo"
-                width={55}
-                height={55}
-                className="rounded-lg"
-              />
+      <div className="relative max-w-7xl mx-auto px-6 z-10">
+        <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-10 lg:gap-8 items-start mb-16">
+          
+          {/* Column 1: Brand & Identity (lg:col-span-4) */}
+          <div className="md:col-span-3 lg:col-span-4 space-y-5">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-11 h-11 bg-white p-1 rounded-xl shadow-md border border-white/10 group-hover:border-[var(--highlight-color)] transition-colors duration-300">
+                <Image
+                  src={bfsLogo}
+                  alt="BFS Logo"
+                  width={44}
+                  height={44}
+                  className="object-contain p-1 rounded-lg"
+                />
+              </div>
+              <span className="text-base font-bold tracking-tight text-white flex flex-col leading-none">
+                <span className="text-[var(--highlight-color)] font-black text-lg">BFS</span>
+                <span className="text-[9px] tracking-[0.2em] uppercase font-bold text-slate-400 mt-0.5">
+                  Bombay Facility
+                </span>
+              </span>
+            </Link>
+
+            <p className="text-[13px] leading-relaxed text-slate-400 max-w-sm">
+              Providing professional manpower logistics and elite security services across Mumbai. 
+              Enforcing protection, punctuality, and trust through certified safeguarding forces.
+            </p>
+
+            {/* Premium Social Media Icons */}
+            <div className="flex items-center space-x-2.5 pt-2">
+              {[
+                { icon: Facebook, href: "https://facebook.com" },
+                { icon: Linkedin, href: "https://linkedin.com" },
+                { icon: Instagram, href: "https://instagram.com" },
+              ].map((social, i) => (
+                <Link
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/5 text-slate-400 hover:bg-[var(--highlight-color)] hover:text-black hover:border-[var(--highlight-color)] hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                >
+                  <social.icon className="w-4 h-4" />
+                </Link>
+              ))}
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-[var(--heading-color)] leading-tight">
-              Bombay<br /> Facility Services
-            </h2>
           </div>
 
-          <p className="text-sm leading-relaxed text-[var(--subheading-color)] max-w-sm">
-            Providing professional manpower and elite security services across Mumbai with
-            excellence, discipline, and trust.
+          {/* Column 2: Explore Links (lg:col-span-2) */}
+          <div className="md:col-span-3 lg:col-span-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-5 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--highlight-color)]"></span>
+              Explore
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { name: "Home", link: "/" },
+                { name: "About Us", link: "/about" },
+                { name: "Careers", link: "/careers" },
+                { name: "Contact", link: "/contact" },
+                { name: "Request Quote", link: "/quote" },
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    href={item.link}
+                    className="group inline-flex items-center text-[13px] text-slate-400 hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium py-0.5"
+                  >
+                    <span className="w-0 group-hover:w-3 opacity-0 group-hover:opacity-100 text-[var(--highlight-color)] transition-all duration-300 ease-out font-bold">
+                      —&nbsp;
+                    </span>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Services Offered (lg:col-span-3) */}
+          <div className="md:col-span-3 lg:col-span-3">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-5 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--highlight-color)]"></span>
+              Services
+            </h3>
+            <ul className="space-y-3">
+              {servicesData.slice(0, 6).map((service) => (
+                <li key={service.id}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="group inline-flex items-center text-[13px] text-slate-400 hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium py-0.5"
+                  >
+                    <span className="w-0 group-hover:w-3 opacity-0 group-hover:opacity-100 text-[var(--highlight-color)] transition-all duration-300 ease-out font-bold">
+                      —&nbsp;
+                    </span>
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Reach Out Glass Cards (lg:col-span-3) */}
+          <div className="md:col-span-3 lg:col-span-3 space-y-4">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-5 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--highlight-color)]"></span>
+              Reach Out
+            </h3>
+
+            {/* Telephone Card */}
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-[var(--highlight-color)]/25 hover:bg-white/10 transition-all duration-300 group shadow-sm">
+              <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-[var(--highlight-color)] group-hover:bg-[var(--highlight-color)] group-hover:text-black transition-colors duration-300 shrink-0">
+                <Phone className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Duty Officer</span>
+                <a href="tel:+919819758831" className="text-xs font-bold text-slate-200 group-hover:text-[var(--highlight-color)] transition-colors">
+                  +91 9819758831
+                </a>
+              </div>
+            </div>
+
+            {/* Email Card */}
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-[var(--highlight-color)]/25 hover:bg-white/10 transition-all duration-300 group shadow-sm">
+              <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-[var(--highlight-color)] group-hover:bg-[var(--highlight-color)] group-hover:text-black transition-colors duration-300 shrink-0">
+                <Mail className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col overflow-hidden">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Operational Mail</span>
+                <a href="mailto:info.bombayfacilityservice@gmail.com" className="text-xs font-bold text-slate-200 group-hover:text-[var(--highlight-color)] transition-colors truncate max-w-[170px]">
+                  info.bombayfacilityservice@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Address Card */}
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-[var(--highlight-color)]/25 hover:bg-white/10 transition-all duration-300 group shadow-sm">
+              <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-[var(--highlight-color)] group-hover:bg-[var(--highlight-color)] group-hover:text-black transition-colors duration-300 shrink-0 mt-0.5">
+                <MapPin className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Headquarters</span>
+                <a 
+                  href="https://maps.google.com/?q=Jai+Ambe+Soc.+MG+Cross+Road+No+3,+Kandivali+West,+Mumbai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[11px] font-bold text-slate-300 leading-normal group-hover:text-slate-200"
+                >
+                  Jai Ambe Soc. MG Cross Road No 3, Kandivali West, Mumbai
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Separator Line */}
+        <div className="h-[1px] bg-white/5 w-full"></div>
+
+        {/* Bottom Bar: Copyright and Privacy */}
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500">
+          <p>© {new Date().getFullYear()} Bombay Facility Services. All rights reserved.</p>
+          
+          {/* Terms & Privacy Links at Very Bottom */}
+          <div className="flex items-center space-x-5">
+            <Link href="/privacy" className="hover:text-[var(--highlight-color)] transition-colors duration-300 font-bold">
+              Privacy Policy
+            </Link>
+            <span className="text-slate-700 font-light">•</span>
+            <Link href="/terms" className="hover:text-[var(--highlight-color)] transition-colors duration-300 font-bold">
+              Terms & Conditions
+            </Link>
+          </div>
+
+          <p className="flex items-center gap-1.5">
+            Need a premium site?{" "}
+            <a 
+              href="https://axovia-tech.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[var(--highlight-color)] hover:underline font-bold transition-all duration-300"
+            >
+              Created by Axovia Tech
+            </a>
           </p>
+        </div>
 
-          <div className="flex space-x-4 pt-2">
-            {[
-              { icon: <FaFacebookF />, href: "https://facebook.com" },
-              { icon: <FaLinkedinIn />, href: "https://linkedin.com" },
-              { icon: <FaInstagram />, href: "https://instagram.com" },
-            ].map((social, i) => (
-              <Link
-                key={i}
-                href={social.href}
-                target="_blank"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--input-bg)] text-[var(--text-color)] hover:bg-[var(--highlight-color)] hover:text-black hover:-translate-y-1 transition-all duration-300 shadow-sm"
-              >
-                {social.icon}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Quick Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-        >
-          <h3 className="text-xl font-bold mb-6 text-[var(--heading-color)]">
-            Explore
-          </h3>
-          <ul className="space-y-3">
-            {[
-              { name: "Home", link: "/" },
-              { name: "About Us", link: "/about" },
-              { name: "Careers", link: "/careers" },
-              { name: "Contact", link: "/contact" },
-              { name: "Request a Quote", link: "/quote" },
-              { name: "Gallery", link: "/gallery" },
-              { name: "Privacy Policy", link: "/privacy" },
-              { name: "Terms & Conditions", link: "/terms" },
-            ].map((item, i) => (
-              <li key={i}>
-                <Link
-                  href={item.link}
-                  className="inline-block text-[var(--subheading-color)] hover:text-[var(--highlight-color)] hover:translate-x-2 transition-all duration-300 font-medium"
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Services */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          <h3 className="text-xl font-bold mb-6 text-[var(--heading-color)]">
-            Our Services
-          </h3>
-          <ul className="space-y-3">
-            {servicesData.map((service) => (
-              <li key={service.id}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="inline-block text-[var(--subheading-color)] hover:text-[var(--highlight-color)] hover:translate-x-2 transition-all duration-300 font-medium"
-                >
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="space-y-6"
-        >
-          <h3 className="text-xl font-bold mb-6 text-[var(--heading-color)]">
-            Reach Out
-          </h3>
-
-          <div className="flex items-center space-x-4 group">
-            <div className="p-3 rounded-xl bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)] transition-colors duration-300">
-              <FaPhoneAlt className="text-[var(--highlight-color)] group-hover:text-black transition-colors duration-300" />
-            </div>
-            <a
-              href="tel:+917499506824"
-              className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium"
-            >
-              +91 9819758831
-            </a>
-          </div>
-
-          <div className="flex items-center space-x-4 group">
-            <div className="p-3 rounded-xl bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)] transition-colors duration-300">
-              <FaEnvelope className="text-[var(--highlight-color)] group-hover:text-black transition-colors duration-300" />
-            </div>
-            <a
-              href="mailto:himanshuyadav7852@gmail.com"
-              className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium break-all"
-            >
-              info.bombayfacilityservice@gmail.com
-            </a>
-          </div>
-
-          <div className="flex items-start space-x-4 group">
-            <div className="p-3 rounded-xl bg-[var(--input-bg)] group-hover:bg-[var(--highlight-color)] transition-colors duration-300 shrink-0">
-              <FaMapMarkerAlt className="text-[var(--highlight-color)] group-hover:text-black transition-colors duration-300" />
-            </div>
-            <a
-              href="https://maps.google.com/?q=Jai+Ambe+Soc.+MG+Cross+Road+No+3,+Kandivali+West,+Mumbai"
-              target="_blank"
-              className="text-[var(--subheading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 font-medium leading-relaxed"
-            >
-              Jai Ambe Soc. MG Cross Road No 3,
-              <br />Kandivali West, Mumbai
-            </a>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="mt-16 border-t border-[var(--card-border-color)] pt-8 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-6 text-sm text-[var(--subheading-color)]">
-        <p className="hover:text-[var(--highlight-color)] transition-colors duration-300 mb-4 md:mb-0">
-          © {new Date().getFullYear()} Bombay Facility Services. All rights reserved.
-        </p>
-        <p>
-          Built with 💛 in Mumbai
-        </p>
       </div>
     </footer>
   );

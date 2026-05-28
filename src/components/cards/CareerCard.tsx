@@ -1,9 +1,9 @@
 "use client";
 
-import { Job } from "@/lib/jobsData";
-import Link from "next/link";
+import { Job } from "@/lib/data/jobsData";
 import { motion } from "framer-motion";
 import { MapPin, Briefcase, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 interface Props {
   job: Job;
@@ -51,12 +51,13 @@ export default function CareerCard({ job }: Props) {
       </div>
 
       <div className="relative z-10 mt-auto pt-6 border-t border-[var(--card-border-color)]">
-        <Link
+        <Button
           href={`/careers/apply?position=${encodeURIComponent(job.title)}`}
-          className="button w-full shadow-md shadow-[var(--highlight-color)]/20 flex items-center justify-center gap-2 group-hover:scale-[1.02] transition-transform duration-300"
+          variant="primary"
+          className="w-full flex items-center justify-center gap-2 group-hover:scale-[1.02]"
         >
           Apply Now <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
+        </Button>
       </div>
     </motion.div>
   );

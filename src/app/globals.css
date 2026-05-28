@@ -1,38 +1,48 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
 
 /* ==============================
-   Theme Variables
-   ============================== */
+   Theme Variables & System
+   ============================= */
 :root {
-  /* Light Theme */
-  --bg-color: linear-gradient(180deg, #f7f7f7 0%, #ececec 100%);
-  --heading-color: #1a1a1a;
-  --subheading-color: #4b5563;
-  --text-color: #374151;
-  --button-text: #dcf1fb;
-  --highlight-color: #eab308; /* gold/yellow highlight */
-  --card-bg-color: #ffffff;
-  --card-border-color: #e5e7eb; /* soft gray border */
-  --input-bg: #f9fafb; /* Subtle gray input background */
-  --input-text: #111827; /* Dark text inside input */
+  /* Dynamic/Static helper color variables */
+  --whatsapp-color: #25d366;
+  --error-color: #f87171;
+  --footer-bg: #05070c;
+  --obsidian-dark: #07090e;
+
+  /* Light Theme - Soft Linen & Rich Gold Bronze */
+  --bg-color: radial-gradient(circle at 50% 0%, #fafafb 0%, #f1f3f6 100%);
+  --heading-color: #0f172a;       /* Deep navy slate */
+  --subheading-color: #334155;    /* Mid slate */
+  --text-color: #475569;          /* Light slate */
+  --button-text: #ffffff;
+  --highlight-color: #9c7946;     /* Rich gold bronze (optimal contrast for light bg) */
+  --highlight-glow: rgba(156, 121, 70, 0.08);
+  --card-bg-color: rgba(255, 255, 255, 0.9);
+  --card-border-color: rgba(15, 23, 42, 0.06);
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
 }
 
 .dark {
-  /* Dark Theme */
-  --bg-color: linear-gradient(180deg, #0a0a0a 0%, #121212 100%);
-  --heading-color: #f1f5f9;
-  --subheading-color: #cbd5e1;
-  --text-color: #94a3b8;
-  --button-text: #011e2b;
-  --highlight-color: #facc15; /* bright yellow highlight */
-  --card-bg-color: #1e293b; /* slightly lighter than body */
-  --card-border-color: rgba(255, 255, 255, 0.15); /* subtle visible outline */
-  --input-bg: #0f172a; /* Deep navy input bg */
-  --input-text: #f1f5f9; /* Light text in inputs */
+  /* Dark Theme - Premium Obsidian & Champagne Gold */
+  --bg-color: radial-gradient(circle at 50% 0%, #07090e 0%, #0c101b 100%);
+  --heading-color: #f8fafc;       /* Pure silver white */
+  --subheading-color: #cbd5e1;    /* Soft silver */
+  --text-color: #94a3b8;          /* Steel gray */
+  --button-text: #07090e;         /* Midnight text on gold button */
+  --highlight-color: #c5a880;     /* Refined Champagne Gold */
+  --highlight-glow: rgba(197, 168, 128, 0.15);
+  --card-bg-color: rgba(18, 24, 38, 0.7);
+  --card-border-color: rgba(255, 255, 255, 0.05);
+  --input-bg: #090d16;
+  --input-text: #f8fafc;
 }
 
 /* ==============================
@@ -41,64 +51,104 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Reusable Compact Glassmorphism Panel */
+.glass-panel {
+  background: var(--card-bg-color);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border-color);
+  box-shadow: 0 4px 20px 0 rgba(15, 23, 42, 0.03);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-panel {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight-color);
+}
+
+/* Dynamic Grid Background Pattern */
+.bg-grid-pattern {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+/* Custom Carousel Dot Presets */
+.carousel-dot {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: rgba(148, 163, 184, 0.3);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.carousel-dot.active {
+  background-color: var(--highlight-color);
+  width: 48px;
 }
 
 /* ==============================
-   Reusable Typography System
+   Typography & Reusable Utilities
    ============================== */
 @layer components {
   .heading {
-    @apply text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4;
+    @apply text-2xl sm:text-3xl md:text-[2.2rem] font-bold tracking-tight mb-3 leading-[1.2];
     color: var(--heading-color);
   }
 
   .subheading {
-    @apply text-xl sm:text-2xl md:text-3xl font-semibold mb-3;
+    @apply text-lg sm:text-xl font-bold mb-2 leading-snug;
     color: var(--subheading-color);
   }
 
   .body-text {
-    @apply text-base sm:text-lg md:text-xl leading-relaxed;
+    @apply text-[13px] sm:text-sm md:text-[14.5px] leading-relaxed;
     color: var(--text-color);
   }
 
-  .caption {
-    @apply text-sm sm:text-base text-center;
-    color: var(--subheading-color);
-  }
-
-  .link {
-    @apply font-medium transition-colors;
-    color: var(--highlight-color);
-  }
-  .link:hover {
-    opacity: 0.8;
-  }
-
-  .button {
-    @apply px-4 py-2 rounded-lg font-semibold transition-transform duration-200;
-    background-color: var(--highlight-color);
-    color: var(--button-text);
-  }
-  .button:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-  }
-
   .card {
-    @apply rounded-2xl shadow-lg p-6 transition-colors duration-300;
-    background-color: var(--card-bg-color);
+    @apply rounded-xl p-5 transition-all duration-300;
+    background: var(--card-bg-color);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--card-border-color);
+    box-shadow: 0 4px 20px 0 rgba(15, 23, 42, 0.03);
+  }
+  .dark .card {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
 
   .input {
-    @apply w-full rounded-lg p-3 outline-none border transition-all duration-200;
+    @apply w-full rounded-lg p-2.5 text-xs sm:text-sm outline-none border transition-all duration-300;
     background-color: var(--input-bg);
     color: var(--input-text);
-    border-color: var(--border-color);
+    border-color: var(--card-border-color);
   }
   .input:focus {
     border-color: var(--highlight-color);
-    box-shadow: 0 0 0 2px var(--highlight-color);
   }
 }
