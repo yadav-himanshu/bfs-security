@@ -23,7 +23,7 @@ export const commonButtonStyle: CSSProperties = {
   justifyContent: "center",
   boxShadow: "0 4px 15px rgba(0, 0, 0, 0.15)",
   transition: "all 0.3s ease",
-  backgroundColor: "#fff",
+  backgroundColor: "var(--card-bg-color)",
   cursor: "pointer",
 };
 
