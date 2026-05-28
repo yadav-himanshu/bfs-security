@@ -1,4 +1,3 @@
-// app/page.tsx
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
@@ -8,13 +7,13 @@ import CTA from "@/components/sections/CTA";
 
 export default function Home() {
   return (
-    <main className="transition-colors duration-500">
+    <div className="transition-colors duration-500">
       <Hero />
       <About />
       <WhyChooseUs />
       <ClientTrust />
       <ServicesOverview />
       <CTA />
-    </main>
+    </div>
   );
 }

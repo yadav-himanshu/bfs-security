@@ -1,138 +1,134 @@
 "use client";
-import Link from "next/link";
-import {
-  ShieldCheck,
-  UserCheck,
-  Car,
-  Heart,
-  Users,
-  ArrowRight,
-} from "lucide-react";
-import { motion } from "framer-motion";
 
-const services = [
-  {
-    title: "Security Guards",
-    desc: "Trained guards for commercial and residential security.",
-    slug: "security-guards",
-    icon: (
-      <ShieldCheck className="w-12 h-12 text-[var(--highlight-color)] group-hover:scale-110 transition-transform duration-300" />
-    ),
-  },
-  {
-    title: "Bouncers & Bodyguards",
-    desc: "Reliable professionals for events and personal protection.",
-    slug: "bouncers",
-    icon: (
-      <UserCheck className="w-12 h-12 text-[var(--highlight-color)] group-hover:scale-110 transition-transform duration-300" />
-    ),
-  },
-  {
-    title: "Care Takers",
-    desc: "Compassionate caretakers for home and facility needs.",
-    slug: "care-takers",
-    icon: (
-      <Heart className="w-12 h-12 text-[var(--highlight-color)] group-hover:scale-110 transition-transform duration-300" />
-    ),
-  },
-  {
-    title: "Liftman & Lady Guards",
-    desc: "Disciplined and well-trained manpower for corporates.",
-    slug: "lift-man",
-    icon: (
-      <Users className="w-12 h-12 text-[var(--highlight-color)] group-hover:scale-110 transition-transform duration-300" />
-    ),
-  },
-  {
-    title: "Drivers",
-    desc: "Skilled and verified drivers for business or personal use.",
-    slug: "drivers",
-    icon: (
-      <Car className="w-12 h-12 text-[var(--highlight-color)] group-hover:scale-110 transition-transform duration-300" />
-    ),
-  },
-];
+import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Shield } from "lucide-react";
+import { servicesData } from "@/lib/data/servicesData";
 
 export default function ServicesOverview() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollAmount = clientWidth * 0.75;
+      scrollContainerRef.current.scrollTo({
+        left: direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section id="services" className="py-20 relative overflow-hidden bg-[var(--bg-color)]">
-      <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="heading inline-block relative">
-            Our Premium Services
-            <div className="absolute -bottom-2 left-1/4 right-1/4 h-1 bg-[var(--highlight-color)] rounded-full opacity-50"></div>
-          </h2>
-          <p className="body-text max-w-2xl mx-auto mt-6">
-            Discover our comprehensive range of specialized security and facility management solutions tailored for your peace of mind.
-          </p>
-        </motion.div>
+    <section id="services" className="py-16 lg:py-24 px-6 bg-[var(--bg-color)] relative overflow-hidden">
+      {/* Decorative Aura */}
+      <div className="absolute top-0 right-1/4 w-[250px] h-[250px] bg-[var(--highlight-color)]/3 rounded-full blur-[100px] pointer-events-none"></div>
 
-        {/* Service Cards */}
-        <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((srv, index) => (
-            <motion.div
-              key={srv.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: index * 0.1,
-                duration: 0.5,
-                ease: "easeOut",
-              }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="h-full"
+      <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Section Header & Navigation Buttons */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div className="text-left max-w-xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--highlight-color)]/10 border border-[var(--highlight-color)]/25 text-[10px] font-bold text-[var(--highlight-color)] uppercase tracking-wider mb-3">
+              <Shield className="w-3 h-3" />
+              <span>Elite Manpower Brochure</span>
+            </div>
+
+            <h2 className="heading mb-3">
+              Professional Security <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--heading-color)] to-[var(--highlight-color)]">Solutions</span>
+            </h2>
+
+            <p className="body-text">
+              Explore our core services, featuring highly disciplined, police-verified 
+              guards, caretakers, drivers, and VIP bouncers.
+            </p>
+          </div>
+
+          {/* Sized-down Brochure Arrow Controls */}
+          <div className="flex items-center gap-2.5 self-start md:self-end">
+            <button
+              onClick={() => scroll("left")}
+              className="w-10 h-10 rounded-full border border-[var(--card-border-color)] bg-[var(--card-bg-color)] hover:border-[var(--highlight-color)] text-[var(--text-color)] hover:text-[var(--highlight-color)] flex items-center justify-center cursor-pointer transition-all duration-300 shadow-sm active:scale-90"
+              aria-label="Scroll services left"
             >
-              <Link
-                href={`/services/${srv.slug}`}
-                className="group flex flex-col h-full bg-[var(--card-bg-color)] border border-[var(--card-border-color)] rounded-2xl p-8 hover:shadow-xl hover:shadow-[var(--highlight-color)]/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden relative"
-              >
-                {/* Decorative background glow on hover */}
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--highlight-color)]/5 rounded-full blur-3xl group-hover:bg-[var(--highlight-color)]/20 transition-all duration-500"></div>
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-10 h-10 rounded-full border border-[var(--card-border-color)] bg-[var(--card-bg-color)] hover:border-[var(--highlight-color)] text-[var(--text-color)] hover:text-[var(--highlight-color)] flex items-center justify-center cursor-pointer transition-all duration-300 shadow-sm active:scale-90"
+              aria-label="Scroll services right"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
 
-                <div className="w-20 h-20 mx-auto rounded-2xl bg-[var(--card-bg-color)] shadow-sm border border-[var(--card-border-color)] flex items-center justify-center mb-6 group-hover:border-[var(--highlight-color)]/50 transition-colors duration-300 relative z-10">
-                  {srv.icon}
+        {/* Dynamic Service Slider (Brochure layout) */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-5 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 select-none cursor-grab active:cursor-grabbing"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {servicesData.map((service, idx) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ delay: idx * 0.05, duration: 0.4 }}
+              className="min-w-[280px] sm:min-w-[340px] md:min-w-[370px] aspect-[4/5] rounded-xl overflow-hidden snap-start relative group shadow-md border border-[var(--card-border-color)] bg-slate-900 shrink-0 cursor-pointer"
+            >
+              <Link href={`/services/${service.slug}`} className="block w-full h-full relative">
+                {/* Background Image Zooming on Hover */}
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  sizes="(max-w-768px) 100vw, 380px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out opacity-85"
+                />
+
+                {/* Background Gradient Dark Tint */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity duration-300" />
+
+                {/* Card Contents */}
+                <div className="absolute inset-0 p-5 flex flex-col justify-end text-left z-10">
+                  {/* Expanding details on card hover */}
+                  <div className="space-y-2">
+                    {/* Category Title */}
+                    <h3 className="text-[17px] font-extrabold text-white group-hover:text-[var(--highlight-color)] transition-colors duration-300 flex items-center gap-1.5 leading-none">
+                      {service.title}
+                    </h3>
+
+                    {/* Refined Description */}
+                    <p className="text-[12px] sm:text-[13px] text-slate-300 leading-relaxed max-h-0 opacity-0 overflow-hidden group-hover:max-h-[80px] group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                      {service.shortDesc}
+                    </p>
+
+                    {/* Request / Link Prompt */}
+                    <div className="pt-1">
+                      <span
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[var(--highlight-color)] uppercase tracking-wider group/link py-1"
+                      >
+                        Explore Service Details 
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" />
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-[var(--heading-color)] group-hover:text-[var(--highlight-color)] transition-colors duration-300 relative z-10">
-                  {srv.title}
-                </h3>
-                <p className="text-[var(--text-color)] leading-relaxed flex-grow relative z-10">
-                  {srv.desc}
-                </p>
-                <div className="mt-6 flex items-center justify-center text-sm font-semibold text-[var(--highlight-color)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 relative z-10">
-                  Learn More <ArrowRight className="w-4 h-4 ml-1" />
+
+                {/* Glowing Corner Shield Indicator */}
+                <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-lg bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-[var(--highlight-color)] opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                  <Shield className="w-4 h-4" />
                 </div>
               </Link>
             </motion.div>
           ))}
-
-          {/* View All Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="h-full"
-          >
-            <Link
-              href="/services"
-              className="group flex flex-col items-center justify-center h-full bg-gradient-to-br from-[var(--highlight-color)]/10 to-transparent border border-[var(--highlight-color)]/30 rounded-2xl p-8 hover:bg-[var(--highlight-color)]/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
-            >
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 bg-[var(--highlight-color)] text-[var(--button-text)] group-hover:scale-110 transition-transform duration-300">
-                <ArrowRight className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-bold text-[var(--heading-color)]">
-                Explore All
-              </h3>
-              <p className="text-[var(--text-color)] mt-2">View our complete catalog</p>
-            </Link>
-          </motion.div>
         </div>
+
       </div>
     </section>
   );

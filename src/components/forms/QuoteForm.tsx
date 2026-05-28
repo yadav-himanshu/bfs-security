@@ -1,57 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { servicesData } from "@/lib/servicesData";
+import { servicesData } from "@/lib/data/servicesData";
 import { Send, CheckCircle } from "lucide-react";
+import { useQuoteForm } from "@/hooks/useQuoteForm";
+import { Button } from "@/components/ui/Button";
 
 export default function QuoteForm() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: "",
-  });
-
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    setErrorMsg("");
-
-    try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        setStatus("success");
-        setForm({ name: "", email: "", phone: "", service: "", message: "" });
-      } else {
-        setStatus("error");
-        setErrorMsg(data.error || "Failed to submit quote request.");
-      }
-    } catch {
-      setStatus("error");
-      setErrorMsg("Failed to submit. Try again.");
-    }
-  };
+  const {
+    form,
+    status,
+    errorMsg,
+    handleChange,
+    handleSubmit,
+    resetForm,
+  } = useQuoteForm();
 
   if (status === "success") {
     return (
@@ -63,9 +25,9 @@ export default function QuoteForm() {
         <p className="text-[var(--subheading-color)] text-lg mb-8 max-w-md mx-auto">
           We received your request. A member of our team will contact you shortly with a personalized quote.
         </p>
-        <button onClick={() => setStatus("idle")} className="button">
+        <Button onClick={resetForm} variant="primary">
           Request Another Quote
-        </button>
+        </Button>
       </div>
     );
   }
@@ -82,7 +44,7 @@ export default function QuoteForm() {
         <h2 className="text-2xl font-extrabold text-[var(--heading-color)] mb-2">
           Request Form
         </h2>
-        <p className="text-[var(--subheading-color)] text-sm">Tell us what you need, and we'll handle the rest.</p>
+        <p className="text-[var(--subheading-color)] text-sm">Tell us what you need, and we&apos;ll handle the rest.</p>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5 mb-5 relative z-10">
@@ -158,22 +120,15 @@ export default function QuoteForm() {
         />
       </div>
 
-      <button
+      <Button
         type="submit"
-        disabled={status === "sending"}
-        className="w-full button py-4 text-lg flex items-center justify-center gap-3 shadow-lg shadow-[var(--highlight-color)]/20 hover:scale-[1.02] transition-transform duration-300 relative z-10 disabled:opacity-70 disabled:hover:scale-100"
+        variant="primary"
+        size="lg"
+        isLoading={status === "sending"}
+        className="w-full relative z-10"
       >
-        {status === "sending" ? (
-          <span className="flex items-center gap-2">
-            <span className="w-5 h-5 border-2 border-[var(--bg-color)] border-t-transparent rounded-full animate-spin"></span>
-            Sending...
-          </span>
-        ) : (
-          <span className="flex items-center gap-2">
-            Request Quote <Send className="w-5 h-5" />
-          </span>
-        )}
-      </button>
+        Request Quote <Send className="w-5 h-5" />
+      </Button>
 
       {status === "error" && (
         <div className="mt-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-center relative z-10">

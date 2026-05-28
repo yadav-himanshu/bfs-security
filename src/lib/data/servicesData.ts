@@ -1,11 +1,11 @@
 import { StaticImageData } from "next/image";
-import SecurityImage from "../../public/img/services/security-guards.png";
-import BouncersImage from "../../public/img/services/bouncers.png";
-import BodyGuardsImage from "../../public/img/services/body-guards.png";
-import CareTakersImage from "../../public/img/services/care-takers.png";
-import LadyGuardsImage from "../../public/img/services/lady-guards.png";
-import LiftManImage from "../../public/img/services/lift-man.png";
-import DriversImage from "../../public/img/services/drivers.png";
+import SecurityImage from "../../../public/img/services/security-guards.png";
+import BouncersImage from "../../../public/img/services/bouncers.png";
+import BodyGuardsImage from "../../../public/img/services/body-guards.png";
+import CareTakersImage from "../../../public/img/services/care-takers.png";
+import LadyGuardsImage from "../../../public/img/services/lady-guards.png";
+import LiftManImage from "../../../public/img/services/lift-man.png";
+import DriversImage from "../../../public/img/services/drivers.png";
 
 export interface Service {
   id: number;

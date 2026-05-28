@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendMail } from "@/lib/sendMail";
+import { sendDualMail } from "@/lib/sendMail";
+import { quoteAdminTemplate, quoteUserTemplate } from "@/lib/emailTemplates";
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,30 +10,27 @@ export async function POST(req: NextRequest) {
     if (!name || !email || !phone || !service) {
       return NextResponse.json(
         { success: false, error: "Please fill all required fields." },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    const htmlContent = `
-      <h2>New Quote Request</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Requested Service:</strong> ${service}</p>
-      <p><strong>Additional Details:</strong><br/> ${message || "N/A"}</p>
-    `;
+    await sendDualMail({
+      // Admin gets the full quote request details
+      adminSubject: `📋 Quote Request — ${service} (${name})`,
+      adminHtml: quoteAdminTemplate({ name, email, phone, service, message }),
 
-    await sendMail({
-      subject: "BFS Quote Request",
-      html: htmlContent,
+      // User gets a styled confirmation with next steps
+      userEmail: email,
+      userSubject: `Your Quote Request for ${service} — BFS`,
+      userHtml: quoteUserTemplate(name, service),
     });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error("[quote/route] Email error:", err);
     return NextResponse.json(
-      { success: false, error: (err as Error).message },
-      { status: 500 },
+      { success: false, error: "Failed to submit your quote request. Please try again." },
+      { status: 500 }
     );
   }
 }

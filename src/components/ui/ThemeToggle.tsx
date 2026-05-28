@@ -2,41 +2,32 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
-import DraggableFloating, { commonButtonStyle } from "./DraggableFloating";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+
+  if (!mounted) {
+    return (
+      <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-[var(--card-border-color)] animate-pulse" />
+    );
+  }
 
   const isDark = theme === "dark";
 
   return (
-    <DraggableFloating initialPosition={{ bottom: 40, right: 24 }}>
-      <button
-        onClick={() => setTheme(isDark ? "light" : "dark")}
-        style={{
-          ...commonButtonStyle,
-          backgroundColor: "#fff",
-          color: "#333",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.1)";
-          e.currentTarget.style.boxShadow = "0 0 20px rgba(255,215,0,0.5)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = "0 4px 15px rgba(0,0,0,0.15)";
-        }}
-        aria-label="Toggle theme"
-      >
-        {isDark ? (
-          <Sun className="w-6 h-6 text-yellow-500" />
-        ) : (
-          <Moon className="w-6 h-6 text-gray-700" />
-        )}
-      </button>
-    </DraggableFloating>
+    <button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="p-2.5 rounded-xl transition-all duration-300 bg-slate-100 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300 hover:text-[var(--highlight-color)] dark:hover:text-[var(--highlight-color)] border border-[var(--card-border-color)] flex items-center justify-center cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+      aria-label="Toggle theme"
+    >
+      {isDark ? (
+        <Sun className="w-5 h-5 text-amber-500 animate-spin-slow" />
+      ) : (
+        <Moon className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+      )}
+    </button>
   );
 }
