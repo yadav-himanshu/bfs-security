@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Send, CheckCircle } from "lucide-react";
+import { useApplyForm } from "@/hooks/useApplyForm";
+import { Button } from "@/components/ui/Button";
 
 interface ApplyFormProps {
   position?: string;
@@ -10,79 +11,16 @@ interface ApplyFormProps {
 export default function ApplyForm({
   position: initialPosition = "",
 }: ApplyFormProps) {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    position: initialPosition,
-    message: "",
-  });
-  const [resume, setResume] = useState<File | null>(null);
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  useEffect(() => {
-    if (initialPosition) {
-      setForm((prev) => ({ ...prev, position: initialPosition }));
-    }
-  }, [initialPosition]);
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setResume(e.target.files?.[0] || null);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    setErrorMsg("");
-
-    const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => formData.append(key, value));
-    if (resume) formData.append("resume", resume);
-
-    try {
-      const res = await fetch("/api/apply", { method: "POST", body: formData });
-      const data = await res.json();
-
-      if (data.success) {
-        setStatus("success");
-        setForm({
-          name: "",
-          email: "",
-          phone: "",
-          position: initialPosition,
-          message: "",
-        });
-        setResume(null);
-      } else {
-        setStatus("error");
-        setErrorMsg(data.error || "Something went wrong.");
-      }
-    } catch {
-      setStatus("error");
-      setErrorMsg("Failed to submit. Try again.");
-    }
-  };
-
-  const positions = [
-    "Security Guard",
-    "Bouncer",
-    "Bodyguard",
-    "Caretaker",
-    "Liftman",
-    "Lady Guard",
-    "Driver",
-  ];
+  const {
+    form,
+    status,
+    errorMsg,
+    positions,
+    handleChange,
+    handleFile,
+    handleSubmit,
+    resetForm,
+  } = useApplyForm(initialPosition);
 
   if (status === "success") {
     return (
@@ -94,9 +32,9 @@ export default function ApplyForm({
         <p className="text-[var(--subheading-color)] text-lg mb-8 max-w-md mx-auto">
           Thank you for applying to Bombay Facility Services. Our HR team will review your application and contact you shortly.
         </p>
-        <button onClick={() => setStatus("idle")} className="button">
+        <Button onClick={resetForm} variant="primary">
           Submit Another Application
-        </button>
+        </Button>
       </div>
     );
   }
@@ -204,22 +142,15 @@ export default function ApplyForm({
           </div>
         </div>
 
-        <button
+        <Button
           type="submit"
-          disabled={status === "sending"}
-          className="w-full button py-4 text-lg flex items-center justify-center gap-3 shadow-lg shadow-[var(--highlight-color)]/20 hover:scale-[1.02] transition-transform duration-300 relative z-10 disabled:opacity-70 disabled:hover:scale-100"
+          variant="primary"
+          size="lg"
+          isLoading={status === "sending"}
+          className="w-full relative z-10"
         >
-          {status === "sending" ? (
-            <span className="flex items-center gap-2">
-              <span className="w-5 h-5 border-2 border-[var(--bg-color)] border-t-transparent rounded-full animate-spin"></span>
-              Sending...
-            </span>
-          ) : (
-            <span className="flex items-center gap-2">
-              Submit Application <Send className="w-5 h-5" />
-            </span>
-          )}
-        </button>
+          Submit Application <Send className="w-5 h-5" />
+        </Button>
 
         {status === "error" && (
           <div className="mt-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-center relative z-10">
